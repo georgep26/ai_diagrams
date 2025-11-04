@@ -34,10 +34,14 @@ List all AWS services and components needed:
 
 **CRITICAL**: Never guess icon shape names. Always use `guides/ICON_REFERENCE.md`.
 
+**Important**: All icon shape names are **lowercase** (e.g., `lambda`, not `Lambda`).
+
 Example:
-- ❌ Wrong: `shape=mxgraph.aws4.lambda` (wrong case)
-- ❌ Wrong: `shape=mxgraph.aws4.AWS_Lambda` (wrong name)
-- ✅ Correct: `shape=mxgraph.aws4.Lambda` (from reference)
+- ❌ Wrong: `shape=mxgraph.aws4.Lambda` (uppercase - incorrect)
+- ❌ Wrong: `shape=mxgraph.aws4.AWS_Lambda` (wrong name and case)
+- ✅ Correct: `shape=mxgraph.aws4.lambda` (lowercase - from reference)
+
+**Source**: Icon names are based on the [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons) repository which uses lowercase naming.
 
 ### Step 4: Copy Template Structure
 
@@ -80,7 +84,7 @@ Check:
 ```xml
 <mxfile host="app.diagrams.net" modified="2025-01-27T00:00:00.000Z" agent="draw.io" version="22.1.16" etag="diagram-id" type="device">
     <diagram id="diagram-name" name="Diagram Title">
-        <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1422" dy="794" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0" />
                 <mxCell id="1" parent="0" />
@@ -88,7 +92,8 @@ Check:
 
 **Notes**:
 - Always include these root elements
-- Set `grid="1"` and `gridSize="10"` for alignment
+- Set `grid="0"` to disable grid (default: no grid visible)
+- Set `background="#ffffff"` for white background (default)
 - Standard page size: 3300x2339
 
 #### 1.2 Add Title
@@ -121,8 +126,8 @@ Copy container structure from `aws-vpc-template.drawio`:
 
 Example workflow:
 1. Need: AWS Lambda
-2. Check ICON_REFERENCE.md → `mxgraph.aws4.Lambda`
-3. Use in XML: `shape=mxgraph.aws4.Lambda`
+2. Check ICON_REFERENCE.md → `mxgraph.aws4.lambda` (lowercase!)
+3. Use in XML: `shape=mxgraph.aws4.lambda` (lowercase!)
 
 #### 2.2 Copy Icon Template
 
@@ -131,7 +136,7 @@ From `aws-vpc-template.drawio`, copy an example icon:
 ```xml
 <mxCell id="lambda-example" 
         value="My Lambda Function" 
-        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
+        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" 
         parent="private-subnet-1" 
         vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
@@ -255,12 +260,12 @@ style="...;dashed=1;dashPattern=8 8;"
 </mxCell>
 
 <!-- API Gateway -->
-<mxCell id="api-gateway" value="API Gateway" style="...;shape=mxgraph.aws4.API_Gateway;" parent="1" vertex="1">
+<mxCell id="api-gateway" value="API Gateway" style="...;shape=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
     <mxGeometry x="250" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda" value="Lambda Function" style="...;shape=mxgraph.aws4.Lambda;" parent="1" vertex="1">
+<mxCell id="lambda" value="Lambda Function" style="...;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="450" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -278,12 +283,12 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- S3 Bucket -->
-<mxCell id="s3" value="S3 Bucket" style="...;shape=mxgraph.aws4.S3;" parent="1" vertex="1">
+<mxCell id="s3" value="S3 Bucket" style="...;shape=mxgraph.aws4.s3;" parent="1" vertex="1">
     <mxGeometry x="100" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda-s3" value="S3 Handler" style="...;shape=mxgraph.aws4.Lambda;" parent="1" vertex="1">
+<mxCell id="lambda-s3" value="S3 Handler" style="...;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="300" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -297,12 +302,12 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- Lambda -->
-<mxCell id="lambda-db" value="Query Handler" style="...;shape=mxgraph.aws4.Lambda;" parent="private-subnet-1" vertex="1">
+<mxCell id="lambda-db" value="Query Handler" style="...;shape=mxgraph.aws4.lambda;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- RDS -->
-<mxCell id="rds" value="RDS PostgreSQL" style="...;shape=mxgraph.aws4.RDS;" parent="private-subnet-1" vertex="1">
+<mxCell id="rds" value="RDS PostgreSQL" style="...;shape=mxgraph.aws4.rds;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="328" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -393,10 +398,11 @@ Always reference these files when generating diagrams:
 
 3. **Look up icons**:
    - Check ICON_REFERENCE.md for each service
-   - Lambda: `mxgraph.aws4.Lambda`
-   - Bedrock: `mxgraph.aws4.Bedrock`
-   - S3: `mxgraph.aws4.S3`
+   - Lambda: `mxgraph.aws4.lambda` (lowercase!)
+   - Bedrock: `mxgraph.aws4.bedrock` (lowercase!)
+   - S3: `mxgraph.aws4.s3` (lowercase!)
    - etc.
+   - **Important**: All icon names are lowercase per [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons)
 
 4. **Copy structure**:
    - Copy VPC container structure from template

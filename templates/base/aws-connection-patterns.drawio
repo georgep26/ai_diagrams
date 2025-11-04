@@ -1,457 +1,92 @@
-<!--
-    AWS Connection Patterns Template for draw.io
-    
-    PURPOSE:
-    This template demonstrates proper connection routing patterns for AWS architecture diagrams.
-    Shows how to create clean, readable connections between AWS services using right-angle routing.
-    
-    USAGE:
-    1. Copy connection patterns from this template
-    2. Modify source and target elements
-    3. Adjust routing points for your layout
-    4. Use appropriate connection styles (solid, dashed, dotted)
-    
-    KEY CONCEPTS:
-    - exitX/exitY: Point where connection leaves source (0.0 to 1.0 = left to right, top to bottom)
-    - entryX/entryY: Point where connection enters target
-    - exitDx/exitDy: Offset from exit point
-    - entryDx/entryDy: Offset from entry point
-    - Array as points: Waypoints for complex routing
-    - Connection styling: Solid, dashed, dotted for different connection types
-    
-    CONNECTION TYPES:
-    - Solid line: Data flow, API calls, direct connections
-    - Dashed line: Replication, monitoring, logging
-    - Dotted line: Optional, conditional connections
--->
-<mxfile host="app.diagrams.net" modified="2025-01-27T00:00:00.000Z" agent="draw.io" version="22.1.16" etag="connection-patterns" type="device">
+<mxfile host="65bd71144e">
     <diagram id="aws-connection-patterns" name="AWS Connection Patterns">
-        <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="745" dy="792" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
             <root>
-                <mxCell id="0" />
-                <mxCell id="1" parent="0" />
-                
-                <!-- Title -->
-                <mxCell id="title" 
-                        value="AWS Connection Patterns Template" 
-                        style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="1050" y="20" width="600" height="40" as="geometry" />
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="AWS Connection Patterns Template" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="20" width="600" height="40" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 1: USER → API GATEWAY → LAMBDA
-                    ========================================================================
-                    Simple linear flow: User makes request → API Gateway → Lambda processes
-                    This is the most common pattern for API-based architectures.
-                -->
-                
-                <!-- User Icon -->
-                <mxCell id="user-1" 
-                        value="Users" 
-                        style="sketch=0;points=[[0.5,0,0],[0.5,1,0],[0.5,0.5,0],[0,0.5,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.user;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="100" width="60" height="60" as="geometry" />
+                <mxCell id="user-1" value="Users" style="sketch=0;points=[[0.5,0,0],[0.5,1,0],[0.5,0.5,0],[0,0.5,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.user;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="100" width="60" height="60" as="geometry"/>
                 </mxCell>
-
-                <!-- API Gateway -->
-                <mxCell id="api-gateway-1" 
-                        value="API Gateway" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.API_Gateway;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="250" y="100" width="78" height="78" as="geometry" />
+                <mxCell id="api-gateway-1" value="API Gateway" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="100" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- Lambda Function -->
-                <mxCell id="lambda-1" 
-                        value="Lambda Function" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="450" y="100" width="78" height="78" as="geometry" />
+                <mxCell id="lambda-1" value="Lambda Function" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="100" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 1: User to API Gateway
-                    - exitX=0.5, exitY=1: Exit from bottom center of user icon
-                    - entryX=0.5, entryY=0: Enter at top center of API Gateway
-                    - No intermediate points needed (straight vertical line)
-                    - style: endArrow=classic (arrow at end), rounded=0 (sharp corners)
-                -->
-                <mxCell id="edge-user-to-api" 
-                        value="HTTP Request" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="user-1" 
-                        target="api-gateway-1" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-user-to-api" value="HTTP Request" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="user-1" target="api-gateway-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 2: API Gateway to Lambda
-                    - exitX=0.5, exitY=1: Exit from bottom center of API Gateway
-                    - entryX=0.5, entryY=0: Enter at top center of Lambda
-                    - Label: "Invoke" indicates the action
-                    - Straight horizontal flow
-                -->
-                <mxCell id="edge-api-to-lambda" 
-                        value="Invoke" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="api-gateway-1" 
-                        target="lambda-1" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-api-to-lambda" value="Invoke" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="api-gateway-1" target="lambda-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 2: LAMBDA → S3 (Event-Driven)
-                    ========================================================================
-                    S3 event triggers Lambda function. Connection goes from S3 to Lambda.
-                    This shows event-driven architecture pattern.
-                -->
-                
-                <!-- S3 Bucket -->
-                <mxCell id="s3-1" 
-                        value="S3 Bucket" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.S3;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="300" width="78" height="78" as="geometry" />
+                <mxCell id="s3-1" value="S3 Bucket" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.s3;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="300" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- Lambda Triggered by S3 -->
-                <mxCell id="lambda-s3" 
-                        value="S3 Event Handler Lambda" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="300" y="300" width="78" height="78" as="geometry" />
+                <mxCell id="lambda-s3" value="S3 Event Handler Lambda" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="300" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 3: S3 to Lambda (Event)
-                    - exitX=1, exitY=0.5: Exit from right side center of S3
-                    - entryX=0, entryY=0.5: Enter at left side center of Lambda
-                    - Label: "S3 Event" indicates event-driven trigger
-                    - Horizontal connection
-                -->
-                <mxCell id="edge-s3-to-lambda" 
-                        value="S3 Event" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="s3-1" 
-                        target="lambda-s3" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-s3-to-lambda" value="S3 Event" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="s3-1" target="lambda-s3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 3: LAMBDA → RDS (Database Connection)
-                    ========================================================================
-                    Lambda function queries database. Shows database connection pattern.
-                -->
-                
-                <!-- Lambda with Database Access -->
-                <mxCell id="lambda-db" 
-                        value="Query Handler Lambda" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="500" width="78" height="78" as="geometry" />
+                <mxCell id="lambda-db" value="Query Handler Lambda" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="500" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- RDS Database -->
-                <mxCell id="rds-1" 
-                        value="RDS PostgreSQL" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.RDS;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="300" y="500" width="78" height="78" as="geometry" />
+                <mxCell id="rds-1" value="RDS PostgreSQL" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.rds;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="500" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 4: Lambda to RDS
-                    - exitX=1, exitY=0.5: Exit from right side center
-                    - entryX=0, entryY=0.5: Enter at left side center
-                    - Label: "Query" indicates database query operation
-                -->
-                <mxCell id="edge-lambda-to-rds" 
-                        value="Query" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="lambda-db" 
-                        target="rds-1" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-lambda-to-rds" value="Query" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="lambda-db" target="rds-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 4: MULTI-POINT ROUTING (Complex Path)
-                    ========================================================================
-                    When components are far apart or in different containers, use waypoints
-                    to create clean right-angle routing. This prevents overlapping connections.
-                -->
-                
-                <!-- Source Component -->
-                <mxCell id="source-comp" 
-                        value="Source Service" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="700" width="78" height="78" as="geometry" />
+                <mxCell id="source-comp" value="Source Service" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="700" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- Target Component (far away) -->
-                <mxCell id="target-comp" 
-                        value="Target Service" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="800" y="700" width="78" height="78" as="geometry" />
+                <mxCell id="target-comp" value="Target Service" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="700" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 5: Multi-point Routing
-                    - exitX=1, exitY=0.5: Exit from right side of source
-                    - entryX=0, entryY=0.5: Enter at left side of target
-                    - Array as points: Defines waypoints for right-angle routing
-                    - Waypoint 1: x="400", y="739" - Creates vertical segment
-                    - Waypoint 2: x="400", y="700" - Creates horizontal segment
-                    - This creates a clean L-shaped connection
-                -->
-                <mxCell id="edge-multi-point" 
-                        value="Data Flow" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="source-comp" 
-                        target="target-comp" 
-                        edge="1">
+                <mxCell id="edge-multi-point" value="Data Flow" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="source-comp" target="target-comp" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <!--
-                            Waypoints for right-angle routing:
-                            - First point: Extends horizontally from source
-                            - Second point: Turns vertical, then horizontal to target
-                            - Creates clean L-shaped connection
-                        -->
                         <Array as="points">
-                            <mxPoint x="400" y="739" />
-                            <mxPoint x="400" y="700" />
+                            <mxPoint x="400" y="739"/>
+                            <mxPoint x="400" y="700"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 5: DASHED CONNECTION (Replication/Monitoring)
-                    ========================================================================
-                    Dashed lines indicate replication, monitoring, or logging connections.
-                    Different from solid data flow connections.
-                -->
-                
-                <!-- Primary RDS -->
-                <mxCell id="rds-primary" 
-                        value="RDS Primary" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.RDS;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="900" width="78" height="78" as="geometry" />
+                <mxCell id="rds-primary" value="RDS Primary" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.rds;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="900" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- RDS Read Replica -->
-                <mxCell id="rds-replica" 
-                        value="RDS Read Replica" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.RDS_Instance;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="300" y="900" width="78" height="78" as="geometry" />
+                <mxCell id="rds-replica" value="RDS Read Replica" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.rds_instance;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="900" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 6: Dashed Replication
-                    - exitX=1, exitY=0.5: Exit from right side
-                    - entryX=0, entryY=0.5: Enter at left side
-                    - dashed=1: Makes connection dashed (replication)
-                    - dashPattern: Optional pattern (8 8 = 8px dash, 8px gap)
-                    - Label: "Replication" indicates data replication
-                -->
-                <mxCell id="edge-replication" 
-                        value="Replication" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" 
-                        parent="1" 
-                        source="rds-primary" 
-                        target="rds-replica" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-replication" value="Replication" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="rds-primary" target="rds-replica" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 6: MONITORING CONNECTION (Dashed)
-                    ========================================================================
-                    CloudWatch monitoring connections use dashed lines.
-                    Typically bidirectional or from service to CloudWatch.
-                -->
-                
-                <!-- Lambda Function -->
-                <mxCell id="lambda-monitored" 
-                        value="Lambda Function" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="1100" width="78" height="78" as="geometry" />
+                <mxCell id="lambda-monitored" value="Lambda Function" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1100" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- CloudWatch -->
-                <mxCell id="cloudwatch-1" 
-                        value="CloudWatch" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.CloudWatch;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="300" y="1100" width="78" height="78" as="geometry" />
+                <mxCell id="cloudwatch-1" value="CloudWatch" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.cloudwatch;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="1100" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 7: Monitoring (Dashed)
-                    - exitX=1, exitY=0.5: Exit from right side
-                    - entryX=0, entryY=0.5: Enter at left side
-                    - dashed=1: Makes connection dashed
-                    - dashPattern=8 8: Dash pattern (8px dash, 8px gap)
-                    - Label: "Logs" indicates log/metric data
-                -->
-                <mxCell id="edge-monitoring" 
-                        value="Logs" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" 
-                        parent="1" 
-                        source="lambda-monitored" 
-                        target="cloudwatch-1" 
-                        edge="1">
-                    <mxGeometry relative="1" as="geometry" />
+                <mxCell id="edge-monitoring" value="Logs" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="lambda-monitored" target="cloudwatch-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    PATTERN 7: CROSS-CONTAINER CONNECTION
-                    ========================================================================
-                    Connection between components in different containers (e.g., VPC to S3).
-                    Requires waypoints to route around container boundaries.
-                -->
-                
-                <!-- Lambda in VPC -->
-                <mxCell id="lambda-vpc" 
-                        value="Lambda in VPC" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="100" y="1300" width="78" height="78" as="geometry" />
+                <mxCell id="lambda-vpc" value="Lambda in VPC" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1300" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!-- S3 Outside VPC -->
-                <mxCell id="s3-external" 
-                        value="S3 Bucket" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.S3;" 
-                        parent="1" 
-                        vertex="1">
-                    <mxGeometry x="800" y="1300" width="78" height="78" as="geometry" />
+                <mxCell id="s3-external" value="S3 Bucket" style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.s3;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1300" width="78" height="78" as="geometry"/>
                 </mxCell>
-
-                <!--
-                    Connection 8: Cross-Container
-                    - exitX=1, exitY=0.5: Exit from right side of Lambda
-                    - entryX=0, entryY=0.5: Enter at left side of S3
-                    - Waypoints route around container boundaries
-                    - Creates clean routing path
-                -->
-                <mxCell id="edge-cross-container" 
-                        value="Store Data" 
-                        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
-                        parent="1" 
-                        source="lambda-vpc" 
-                        target="s3-external" 
-                        edge="1">
+                <mxCell id="edge-cross-container" value="Store Data" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="lambda-vpc" target="s3-external" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <!--
-                            Waypoints for cross-container routing:
-                            - Route around container boundaries
-                            - Create clean right-angle path
-                        -->
                         <Array as="points">
-                            <mxPoint x="400" y="1339" />
-                            <mxPoint x="400" y="1300" />
+                            <mxPoint x="400" y="1339"/>
+                            <mxPoint x="400" y="1300"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-
-                <!--
-                    ========================================================================
-                    CONNECTION ROUTING REFERENCE
-                    ========================================================================
-                    
-                    EXIT/ENTRY POINT VALUES:
-                    - exitX/entryX: 0.0 = left edge, 0.5 = center, 1.0 = right edge
-                    - exitY/entryY: 0.0 = top edge, 0.5 = center, 1.0 = bottom edge
-                    
-                    COMMON EXIT/ENTRY PATTERNS:
-                    - Top to bottom: exitX=0.5, exitY=1, entryX=0.5, entryY=0
-                    - Left to right: exitX=1, exitY=0.5, entryX=0, entryY=0.5
-                    - Right to left: exitX=0, exitY=0.5, entryX=1, entryY=0.5
-                    - Bottom to top: exitX=0.5, exitY=0, entryX=0.5, entryY=1
-                    
-                    CONNECTION STYLES:
-                    - Solid line: endArrow=classic, dashed=0 (default)
-                    - Dashed line: endArrow=classic, dashed=1, dashPattern=8 8
-                    - Dotted line: endArrow=classic, dashed=1, dashPattern=1 3
-                    - No arrow: endArrow=none (rarely used)
-                    
-                    ROUTING ALGORITHM:
-                    1. Identify source and target components
-                    2. Determine exit point (usually nearest to target)
-                    3. Determine entry point (usually nearest to source)
-                    4. If direct path would overlap other components, add waypoints
-                    5. Use waypoints to create right-angle routing
-                    6. Label connection with descriptive text
-                    
-                    WAYPOINT CALCULATION:
-                    - Calculate midpoint between source and target
-                    - Add waypoints at strategic points to avoid overlaps
-                    - Use x,y coordinates in absolute canvas space
-                    - Example: If source at x=100, target at x=800, midpoint x=450
-                    - Create vertical segment: x=450, y varies
-                    - Create horizontal segment: x varies, y=constant
-                    
-                    LABEL PLACEMENT:
-                    - Labels appear at midpoint of connection
-                    - Use descriptive action words: "Invoke", "Query", "Store", "Replicate"
-                    - Keep labels concise (1-2 words)
-                    - Use capitalization for consistency
-                    
-                    AVOIDING OVERLAPS:
-                    - Don't route connections through other components
-                    - Use waypoints to route around obstacles
-                    - Group related connections together
-                    - Use different connection styles for different types
-                    - Space connections vertically when multiple connections exist
-                    
-                    BEST PRACTICES:
-                    1. Always use right-angle routing (not diagonal)
-                    2. Label all connections with action verbs
-                    3. Use dashed lines for monitoring/replication
-                    4. Use waypoints for complex routing
-                    5. Keep connections parallel when possible
-                    6. Avoid crossing connections unnecessarily
-                    7. Group related connections together
-                    8. Use consistent arrow styles
-                -->
             </root>
         </mxGraphModel>
     </diagram>
 </mxfile>
-

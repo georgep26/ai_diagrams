@@ -40,6 +40,7 @@ ai_diagrams/
 - ✅ **Consistent Spacing**: Grid-based layout with standard spacing
 - ✅ **Extensive Comments**: XML comments explain every component
 - ✅ **Template System**: Base templates + organization-specific customization
+- ✅ **Clean Appearance**: White background with no visible grid (default settings)
 
 ### Guides
 
@@ -86,24 +87,36 @@ The template system addresses the most common issues:
 
 **Critical Rules**:
 - ❌ Never guess icon shape names - always check `ICON_REFERENCE.md`
+- ❌ Never use uppercase icon names - all icon names are lowercase (e.g., `lambda`, not `Lambda`)
 - ❌ Never use diagonal connections - always use right-angle routing
 - ❌ Never use custom icon sizes - always use 78x78 for AWS icons
 - ✅ Always include `aspect=fixed` in icon styles
 - ✅ Always label connections with action verbs
 - ✅ Always align positions to 10px grid
+- ✅ Always use icons from [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons) for latest lowercase names
+- ✅ Always set `grid="0"` to disable visible grid (default)
+- ✅ Always set `background="#ffffff"` for white background (default)
 
 ### For Human Users
 
-1. **Open templates in draw.io**:
-   - Visit [https://app.diagrams.net/?splash=0&libs=aws4](https://app.diagrams.net/?splash=0&libs=aws4)
+1. **Load AWS Icons in draw.io** (Recommended):
+   - **Best Option**: Load from [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons):
+     - File → Open Library from → URL
+     - Enter: `https://raw.githubusercontent.com/m-radzikowski/diagrams-aws-icons/master/20240206/AWS%20Architecture%20Icons%2020240206.xml`
+     - Check repository for latest version
+   - **Alternative**: Open draw.io with built-in library:
+     - Visit [https://app.diagrams.net/?splash=0&libs=aws4](https://app.diagrams.net/?splash=0&libs=aws4)
+     - Note: Built-in library may use uppercase names; m-radzikowski library uses lowercase
+
+2. **Open templates in draw.io**:
    - File → Open from → Device → Select template file
 
-2. **Customize as needed**:
+3. **Customize as needed**:
    - Modify components, labels, and positions
    - Maintain structure and styling
    - Read XML comments for guidance
 
-3. **Create organization templates**:
+4. **Create organization templates**:
    - See `templates/organizations/README.md` for instructions
    - Customize colors and branding
    - Maintain compatibility with base structure

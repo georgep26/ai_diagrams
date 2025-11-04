@@ -60,9 +60,10 @@ Example: If Lambda at y=100, next row at y=328 (100 + 78 + 150)
 ### Grid System
 
 Use a 10px grid for alignment:
-- **Grid Size**: 10px
-- **Grid Enabled**: `grid="1"` in mxGraphModel
+- **Grid Size**: 10px (`gridSize="10"` in mxGraphModel)
+- **Grid Visible**: `grid="0"` in mxGraphModel (default: no visible grid)
 - **All positions**: Multiples of 10px for clean alignment
+- **Note**: Grid alignment still works even when `grid="0"` (grid is not visible but positions still snap to 10px)
 
 ### Grid Calculation
 

@@ -17,19 +17,24 @@
     - Parent-child relationships: Components must be children of their container
     - Style attributes: Control appearance, colors, icons, and behavior
     
-    ICON LOADING:
-    Ensure AWS icons are loaded in draw.io:
-    - Open draw.io with: https://app.diagrams.net/?splash=0&libs=aws4
-    - Or: More Shapes → Networking → AWS → Apply
-    
-    For complete icon reference, see: guides/ICON_REFERENCE.md
+                    ICON LOADING:
+                    Ensure AWS icons are loaded in draw.io:
+                    - Recommended: Load from m-radzikowski/diagrams-aws-icons repository
+                      File → Open Library from → URL → https://raw.githubusercontent.com/m-radzikowski/diagrams-aws-icons/master/20240206/AWS%20Architecture%20Icons%2020240206.xml
+                    - Alternative: Open draw.io with: https://app.diagrams.net/?splash=0&libs=aws4
+                    - Or: More Shapes → Networking → AWS → Apply
+                    
+                    IMPORTANT: All icon shape names in this template use lowercase (e.g., lambda, not Lambda)
+                    This matches the m-radzikowski/diagrams-aws-icons repository format.
+                    
+                    For complete icon reference, see: guides/ICON_REFERENCE.md
 -->
 <mxfile host="app.diagrams.net" modified="2025-01-27T00:00:00.000Z" agent="draw.io" version="22.1.16" etag="vpc-template" type="device">
     <diagram id="aws-vpc-template" name="AWS VPC Template">
         <!--
             mxGraphModel: Root element for the diagram model
             dx/dy: Canvas size (horizontal/vertical space)
-            grid: Enable grid (1) or disable (0)
+            grid: Enable grid (1) or disable (0) - default is 0 (no grid)
             gridSize: Grid spacing in pixels (10 = standard)
             guides: Show alignment guides (1) or hide (0)
             tooltips: Enable tooltips (1) or disable (0)
@@ -39,9 +44,9 @@
             page: Page number (1)
             pageScale: Zoom level (1 = 100%)
             pageWidth/pageHeight: Canvas dimensions in pixels
-            background: Background color (#ffffff = white)
+            background: Background color (#ffffff = white) - default is white
         -->
-        <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1422" dy="794" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
             <root>
                 <!--
                     mxCell id="0": Root cell - required, never modify
@@ -167,7 +172,7 @@
                 
                 <!--
                     Internet Gateway Icon
-                    - shape=mxgraph.aws4.Internet_Gateway: AWS Internet Gateway icon
+                    - shape=mxgraph.aws4.internet_gateway: AWS Internet Gateway icon
                     - fillColor=#8C4FFF: Purple color (networking service category)
                     - aspect=fixed: Maintains icon proportions (important!)
                     - parent="vpc": Placed inside VPC container
@@ -176,7 +181,7 @@
                 -->
                 <mxCell id="igw" 
                         value="Internet Gateway" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Internet_Gateway;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.internet_gateway;" 
                         parent="vpc" 
                         vertex="1">
                     <!--
@@ -225,7 +230,7 @@
 
                 <!--
                     NAT Gateway in Public Subnet 1
-                    - shape=mxgraph.aws4.NAT_Gateway: AWS NAT Gateway icon
+                    - shape=mxgraph.aws4.nat_gateway: AWS NAT Gateway icon
                     - fillColor=#8C4FFF: Purple (networking service)
                     - parent="public-subnet-1": Placed inside public subnet
                     - NAT Gateway provides outbound internet for private subnets
@@ -233,7 +238,7 @@
                 -->
                 <mxCell id="nat-gw-1" 
                         value="NAT Gateway" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.NAT_Gateway;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.nat_gateway;" 
                         parent="public-subnet-1" 
                         vertex="1">
                     <!--
@@ -280,7 +285,7 @@
                 <!-- NAT Gateway in Public Subnet 2 -->
                 <mxCell id="nat-gw-2" 
                         value="NAT Gateway" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.NAT_Gateway;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.nat_gateway;" 
                         parent="public-subnet-2" 
                         vertex="1">
                     <mxGeometry x="50" y="50" width="78" height="78" as="geometry" />
@@ -326,16 +331,17 @@
                 
                 <!--
                     AWS Lambda Function Example
-                    - shape=mxgraph.aws4.Lambda: AWS Lambda icon
+                    - shape=mxgraph.aws4.lambda: AWS Lambda icon (lowercase!)
                     - fillColor=#759C3E: Green (compute service category)
                     - parent="private-subnet-1": Inside private subnet
                     - Standard icon size: 78x78 pixels
+                    - Note: Icon shape name is lowercase per m-radzikowski/diagrams-aws-icons
                     - Horizontal spacing: 150px between icons (78 + 72 padding)
                     - Vertical spacing: 150px between rows (78 + 72 padding)
                 -->
                 <mxCell id="lambda-example" 
                         value="Lambda Function" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" 
                         parent="private-subnet-1" 
                         vertex="1">
                     <!--
@@ -350,14 +356,15 @@
 
                 <!--
                     RDS Database Example
-                    - shape=mxgraph.aws4.RDS: AWS RDS icon
+                    - shape=mxgraph.aws4.rds: AWS RDS icon (lowercase!)
                     - fillColor=#2E27AD: Blue (database service category)
                     - parent="private-subnet-1": Inside private subnet
                     - Positioned below Lambda functions
+                    - Note: Icon shape name is lowercase per m-radzikowski/diagrams-aws-icons
                 -->
                 <mxCell id="rds-example" 
                         value="RDS PostgreSQL" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.RDS;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#2E27AD;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.rds;" 
                         parent="private-subnet-1" 
                         vertex="1">
                     <!--
@@ -405,7 +412,7 @@
                 <!-- VPC Endpoint for S3 -->
                 <mxCell id="vpc-endpoint-s3" 
                         value="VPC Endpoint&#10;(S3)" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.VPC_Endpoint;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.vpc_endpoint;" 
                         parent="vpc" 
                         vertex="1">
                     <!--

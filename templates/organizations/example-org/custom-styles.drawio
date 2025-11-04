@@ -26,7 +26,7 @@
 -->
 <mxfile host="app.diagrams.net" modified="2025-01-27T00:00:00.000Z" agent="draw.io" version="22.1.16" etag="example-org-template" type="device">
     <diagram id="example-org-vpc" name="Example Org VPC Template">
-        <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
+        <mxGraphModel dx="1422" dy="794" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" background="#ffffff" math="0" shadow="0">
             <root>
                 <mxCell id="0" />
                 <mxCell id="1" parent="0" />
@@ -83,13 +83,13 @@
                 -->
                 <mxCell id="lambda-example" 
                         value="Lambda Function" 
-                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#FF6B35;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.Lambda;" 
+                        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#FF6B35;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" 
                         parent="vpc" 
                         vertex="1">
                     <!--
                         CUSTOMIZATION: fillColor changed from #759C3E (green) to #FF6B35 (orange)
                         This applies organization brand color to compute services
-                        Icon shape remains the same (mxgraph.aws4.Lambda)
+                        Icon shape remains the same (mxgraph.aws4.lambda)
                     -->
                     <mxGeometry x="100" y="100" width="78" height="78" as="geometry" />
                 </mxCell>
