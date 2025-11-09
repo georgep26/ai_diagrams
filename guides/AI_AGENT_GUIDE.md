@@ -32,12 +32,38 @@ List all AWS services and components needed:
 - AI/ML: Bedrock, Knowledge Bases, etc.
 - Monitoring: CloudWatch, X-Ray, etc.
 
-### Step 3: Look Up Icon Shape Names
+### Step 3: Create Component Outline
+
+**CRITICAL**: Before generating any diagram XML, create a text-only outline of all components, their hierarchy, and connections. This helps ensure proper structure and nesting before implementation.
+
+Create a structured text outline that combines containers, services, and connections in one integrated hierarchy:
+
+**Example**: S3 Event Pattern (from `AWS_diagram_design_patterns.drawio` tab "AWS Groups")
+
+```
+Component Outline: S3 Event Processing Architecture
+
+Example AWS Account (AWS Account group)
+└── Example VPC (VPC group)
+    └── S3 Bucket → ("S3 Event", solid) Lambda Function → ("Logs", dashed) CloudWatch
+```
+
+**Format guidelines**:
+- Use indentation to show nesting hierarchy
+- List containers with their group type in parentheses
+- Show services and connections on one line: `Service → ("Label", style) Target Service → ("Label", style) Next Service`
+- Use "solid" for data flow connections, "dashed" for monitoring/replication
+- Chain multiple connections in sequence on the same line
+- Keep the entire structure in one integrated tree
+
+This outline serves as a blueprint before generating XML and helps catch structural issues early.
+
+### Step 4: Look Up Icon Shape Names
 
 **CRITICAL**: Never guess icon shape names. Always use `guides/ICON_REFERENCE.md`.
 
 
-### Step 4: Copy Template Structure
+### Step 5: Copy Template Structure
 
 Copy the base structure from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
 - Root mxGraphModel structure
@@ -45,7 +71,7 @@ Copy the base structure from `templates/base/AWS_diagram_design_patterns.drawio`
 - Group/container examples with proper nesting
 - See "AWS Services in Group Examples" section for complete structure examples
 
-### Step 5: Calculate Positions
+### Step 6: Calculate Positions
 
 Use formulas from `guides/SPACING_LAYOUT.md`:
 - Icon spacing: 150px between icons
@@ -53,7 +79,7 @@ Use formulas from `guides/SPACING_LAYOUT.md`:
 - Row spacing: 150px between rows
 - Always align to 10px grid
 
-### Step 6: Add Connections
+### Step 7: Add Connections
 
 Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"):
 - Use right-angle routing (never diagonal)
@@ -62,7 +88,7 @@ Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio
 - Add waypoints for complex routing
 - See "AWS Services in Group Examples" section for connections with nested services
 
-### Step 7: Verify and Test
+### Step 8: Verify and Test
 
 Check:
 - [ ] All icon shape names match ICON_REFERENCE.md
@@ -508,7 +534,20 @@ Always reference these files when generating diagrams:
    - Bedrock Knowledge Base, Bedrock
    - S3, RDS, OpenSearch
 
-3. **Look up icons**:
+3. **Create component outline**:
+   - Create text-only outline showing container hierarchy, services, and connections in one integrated structure
+   - Example format:
+     ```
+     AWS Cloud
+     ├── User → ("HTTP Request", solid) API Gateway → ("Invoke", solid) Lambda
+     ├── Bedrock
+     ├── S3
+     └── VPC
+         └── Private Subnet
+             └── Lambda → ("API Call", solid) Bedrock
+     ```
+
+4. **Look up icons**:
    - Check ICON_REFERENCE.md for each service
    - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon=mxgraph.aws4.[service]` (lowercase!)
    - Lambda: `resIcon=mxgraph.aws4.lambda` (lowercase!)
@@ -517,13 +556,13 @@ Always reference these files when generating diagrams:
    - etc.
    - **Important**: All icon names are lowercase per [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons)
 
-4. **Add groups/containers**:
+5. **Add groups/containers**:
    - Copy group examples from `AWS_diagram_design_patterns.drawio` tab "AWS Groups"
    - Create hierarchy: AWS Cloud → Region → VPC → Subnets
    - Use correct `grIcon` for each group type
    - Size groups to accommodate nested services
 
-5. **Add services**:
+6. **Add services**:
    - Copy icon examples from `AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
    - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for each service
    - Include connection points and white stroke
@@ -532,13 +571,13 @@ Always reference these files when generating diagrams:
    - Modify for each service
    - Calculate positions using spacing formulas
 
-6. **Add connections**:
+7. **Add connections**:
    - Copy connection patterns from `AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
    - Use `endArrow=classic;html=1;rounded=0` with exit/entry points
    - Modify for each flow
    - Add waypoints for complex routing
 
-7. **Verify**:
+8. **Verify**:
    - Check all icons against ICON_REFERENCE.md
    - Check all connections use right-angle routing
    - Check spacing follows standards
