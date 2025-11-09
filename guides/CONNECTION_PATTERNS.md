@@ -46,6 +46,16 @@ Connections exit from the source component and enter the target component. The e
 | 0.0 | Left edge (horizontal) or Top edge (vertical) |
 | 0.5 | Center |
 | 1.0 | Right edge (horizontal) or Bottom edge (vertical) |
+| 1.256 | Extended bottom connection point (20px below icon, for bottom connections) |
+
+**Important**: All AWS service icons include 5 extended connection points below the icon (at y=1.256) to prevent connections from overlapping the label. These points are located at:
+- `[0, 1.256, 0]` - bottom left corner
+- `[0.25, 1.256, 0]` - between left and center
+- `[0.5, 1.256, 0]` - bottom center (most common)
+- `[0.75, 1.256, 0]` - between center and right
+- `[1, 1.256, 0]` - bottom right corner
+
+When connecting to the bottom of an icon, use `entryY=1.256` (or the appropriate x value: 0, 0.25, 0.5, 0.75, or 1) instead of `entryY=1` to connect below the label.
 
 ### Common Exit/Entry Patterns
 
@@ -75,11 +85,12 @@ exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0
 
 #### Bottom to Top (Vertical)
 ```xml
-exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0
+exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.256;entryDx=0;entryDy=0
 ```
 - Source: Exit from top center
-- Target: Enter at bottom center
-- Use case: Rare, but used for reverse flows
+- Target: Enter at extended bottom connection point (20px below icon, y=1.256)
+- Use case: Connecting to bottom of icon (e.g., ECR → ECS container pull)
+- **Note**: All AWS icons include 5 extended connection points below the icon (at y=1.256) to avoid overlapping the label. Use `entryY=1.256` with the appropriate `entryX` value (0, 0.25, 0.5, 0.75, or 1) when connecting to the bottom.
 
 ## Connection Styles
 
@@ -94,8 +105,8 @@ style="endArrow=classic;html=1;rounded=0;...;dashed=0;"
 ```xml
 style="...;dashed=1;dashPattern=8 8;"
 ```
-**Use for**: Replication, monitoring, logging, backup
-**Example**: RDS Primary → RDS Read Replica, Lambda → CloudWatch
+**Use for**: Replication, monitoring, logging, backup, container registry (ECR)
+**Example**: RDS Primary → RDS Read Replica, Lambda → CloudWatch, ECR → ECS/Lambda (Pull Container)
 
 **Dash Patterns**:
 - `8 8`: Standard dashed (8px dash, 8px gap)
@@ -176,6 +187,7 @@ For components that are far apart or need to route around obstacles:
 | Replication | "Replicate", "Sync", "Backup" |
 | Monitoring | "Logs", "Metrics", "Monitor" |
 | Storage | "Store Data", "Save", "Upload" |
+| Container Registry | "Pull Container", "Pull Image", "Container Image" |
 
 ### Label Placement
 
@@ -310,6 +322,30 @@ When multiple connections share the same path, they can overlap and become hard 
 </mxCell>
 ```
 
+### Example 3b: ECR Container Pull (Dashed)
+
+```xml
+<!-- ECR to ECS (Container Registry) -->
+<mxCell id="edge-ecr-ecs" 
+        value="Pull Container" 
+        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.256;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" 
+        parent="1" 
+        source="ecr" 
+        target="ecs-frontend" 
+        edge="1">
+    <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+            <mxPoint x="708" y="659" />
+            <mxPoint x="419" y="400" />
+        </Array>
+    </mxGeometry>
+</mxCell>
+```
+
+**Notes**: 
+- ECR connections should always use dashed lines (`dashed=1;dashPattern=8 8;`) to indicate container image retrieval operations, distinguishing them from active data flow connections.
+- Uses `entryY=1.256` to connect to the extended bottom connection point (20px below icon), avoiding overlap with the icon label.
+
 ### Example 4: Complex Routing with Waypoints
 
 ```xml
@@ -337,10 +373,11 @@ When multiple connections share the same path, they can overlap and become hard 
 2. **Label all connections** - Use descriptive action verbs
 3. **Use appropriate line styles** - Solid for data flow, dashed for monitoring/replication
 4. **Avoid overlaps** - Space connections vertically or use waypoints
-5. **Keep connections parallel** - When multiple connections exist, keep them aligned
-6. **Group related connections** - Keep related flows together visually
-7. **Use consistent arrow styles** - Always use `endArrow=classic`
-8. **Calculate waypoints carefully** - Ensure waypoints create clean routing
+5. **Use extended bottom connection points** - When connecting to bottom of icon, use `entryY=1.256` to connect below the label (20px below icon)
+6. **Keep connections parallel** - When multiple connections exist, keep them aligned
+7. **Group related connections** - Keep related flows together visually
+8. **Use consistent arrow styles** - Always use `endArrow=classic`
+9. **Calculate waypoints carefully** - Ensure waypoints create clean routing
 
 ## Common Mistakes to Avoid
 
@@ -348,9 +385,10 @@ When multiple connections share the same path, they can overlap and become hard 
 2. **Unlabeled connections** - Always label connections
 3. **Overlapping connections** - Space them vertically
 4. **Wrong exit/entry points** - Use nearest points to target
-5. **Missing waypoints** - Add waypoints for complex routing
-6. **Inconsistent styles** - Use same style for same connection types
-7. **Too many waypoints** - Keep routing simple (2-3 waypoints max)
+5. **Connecting through labels** - When connecting to bottom of icon, use `entryY=1.256` (extended connection point) instead of `entryY=1` to avoid overlapping the label
+6. **Missing waypoints** - Add waypoints for complex routing
+7. **Inconsistent styles** - Use same style for same connection types
+8. **Too many waypoints** - Keep routing simple (2-3 waypoints max)
 
 ## Connections with Nested Services
 

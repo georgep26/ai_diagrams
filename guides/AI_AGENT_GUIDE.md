@@ -215,7 +215,7 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style"), copy an exampl
 ```xml
 <mxCell id="lambda-example" 
         value="My Lambda Function" 
-        style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" 
+        style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" 
         parent="private-subnet-1" 
         vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
@@ -229,7 +229,7 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style"), copy an exampl
 3. Change `resIcon` to correct service (from ICON_REFERENCE.md) - keep `shape=mxgraph.aws4.resourceIcon`
 4. Change `fillColor` to service-specific color (from ICON_REFERENCE.md)
 5. Keep `strokeColor=#ffffff` (white stroke for all AWS service icons)
-6. Keep connection points: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]]`
+6. Keep connection points: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]]` (includes 5 extended connection points 20px below icon for bottom connections)
 7. Change `parent` to correct container
 8. Calculate `x` and `y` positions (from SPACING_LAYOUT.md)
 9. Keep `width="78" height="78"` (standard icon size)
@@ -328,6 +328,7 @@ Use patterns from `guides/CONNECTION_PATTERNS.md` and `AWS_diagram_design_patter
 
 - **Left to right (horizontal)**: `exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0`
 - **Top to bottom (vertical)**: `exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0`
+- **Bottom to top (vertical, connecting to bottom)**: `exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1.256;entryDx=0;entryDy=0` (uses extended connection point 20px below icon to avoid label)
 - **Right to left (horizontal)**: `exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0`
 
 #### 4.5 Add Waypoints for Complex Routing
@@ -359,10 +360,12 @@ style="...;dashed=0;"
 
 #### 5.2 Dashed Line
 
-For replication, monitoring:
+For replication, monitoring, container registry (ECR):
 ```xml
 style="...;dashed=1;dashPattern=8 8;"
 ```
+
+**Note**: ECR (Elastic Container Registry) connections should always use dashed lines to indicate container image retrieval/pull operations, not active data flow.
 
 ## Common Patterns
 
@@ -375,12 +378,12 @@ style="...;dashed=1;dashPattern=8 8;"
 </mxCell>
 
 <!-- API Gateway -->
-<mxCell id="api-gateway" value="API Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
+<mxCell id="api-gateway" value="API Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
     <mxGeometry x="250" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda" value="Lambda Function" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
+<mxCell id="lambda" value="Lambda Function" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="450" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -398,12 +401,12 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- S3 Bucket -->
-<mxCell id="s3" value="S3 Bucket" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
+<mxCell id="s3" value="S3 Bucket" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
     <mxGeometry x="100" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda-s3" value="S3 Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
+<mxCell id="lambda-s3" value="S3 Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="300" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -417,12 +420,12 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- Lambda -->
-<mxCell id="lambda-db" value="Query Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="private-subnet-1" vertex="1">
+<mxCell id="lambda-db" value="Query Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- RDS -->
-<mxCell id="rds" value="RDS PostgreSQL" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" parent="private-subnet-1" vertex="1">
+<mxCell id="rds" value="RDS PostgreSQL" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="328" width="78" height="78" as="geometry" />
 </mxCell>
 
@@ -442,7 +445,7 @@ Before finalizing diagram XML, verify:
 - [ ] All icons use standard size (78x78 for services, 60x60 for User)
 - [ ] All icons have `aspect=fixed` in style
 - [ ] All AWS service icons have `strokeColor=#ffffff` (white stroke)
-- [ ] All icons have connection points defined: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]]`
+- [ ] All icons have connection points defined: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]]` (includes extended bottom connection points)
 - [ ] All icons have correct `fillColor` for service (from ICON_REFERENCE.md)
 - [ ] All icons have correct `parent` (proper nesting)
 
