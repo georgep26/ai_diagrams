@@ -34,14 +34,6 @@ List all AWS services and components needed:
 
 **CRITICAL**: Never guess icon shape names. Always use `guides/ICON_REFERENCE.md`.
 
-**Important**: All icon shape names are **lowercase** (e.g., `lambda`, not `Lambda`).
-
-Example:
-- ❌ Wrong: `shape=mxgraph.aws4.Lambda` (uppercase - incorrect)
-- ❌ Wrong: `shape=mxgraph.aws4.AWS_Lambda` (wrong name and case)
-- ✅ Correct: `shape=mxgraph.aws4.lambda` (lowercase - from reference)
-
-**Source**: Icon names are based on the [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons) repository which uses lowercase naming.
 
 ### Step 4: Copy Template Structure
 
@@ -127,16 +119,16 @@ Copy container structure from `aws-vpc-template.drawio`:
 Example workflow:
 1. Need: AWS Lambda
 2. Check ICON_REFERENCE.md → `mxgraph.aws4.lambda` (lowercase!)
-3. Use in XML: `shape=mxgraph.aws4.lambda` (lowercase!)
+3. Use in XML: `shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda` (lowercase!)
 
 #### 2.2 Copy Icon Template
 
-From `aws-vpc-template.drawio`, copy an example icon:
+From `AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style"), copy an example icon:
 
 ```xml
 <mxCell id="lambda-example" 
         value="My Lambda Function" 
-        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" 
+        style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" 
         parent="private-subnet-1" 
         vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
@@ -147,12 +139,16 @@ From `aws-vpc-template.drawio`, copy an example icon:
 
 1. Change `id` to unique value
 2. Change `value` to your label
-3. Change `shape` to correct service (from ICON_REFERENCE.md)
-4. Change `fillColor` to service category color (from ICON_REFERENCE.md)
-5. Change `parent` to correct container
-6. Calculate `x` and `y` positions (from SPACING_LAYOUT.md)
-7. Keep `width="78" height="78"` (standard icon size)
-8. Keep `aspect=fixed` (required)
+3. Change `resIcon` to correct service (from ICON_REFERENCE.md) - keep `shape=mxgraph.aws4.resourceIcon`
+4. Change `fillColor` to service-specific color (from ICON_REFERENCE.md)
+5. Keep `strokeColor=#ffffff` (white stroke for all AWS service icons)
+6. Keep connection points: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]]`
+7. Change `parent` to correct container
+8. Calculate `x` and `y` positions (from SPACING_LAYOUT.md)
+9. Keep `width="78" height="78"` (standard icon size)
+10. Keep `aspect=fixed` (required)
+
+**Note**: For User icons, use `shape=mxgraph.aws4.user` directly (not `resourceIcon`) with `fillColor=#232F3D` and `strokeColor=none`.
 
 #### 2.4 Calculate Positions
 
@@ -184,12 +180,12 @@ Map the data flow:
 
 #### 3.2 Copy Connection Pattern
 
-From `aws-connection-patterns.drawio`, copy appropriate pattern:
+From `AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"), copy appropriate pattern:
 
 ```xml
 <mxCell id="edge-1" 
         value="Invoke" 
-        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
         parent="1" 
         source="api-gateway" 
         target="lambda" 
@@ -205,15 +201,16 @@ From `aws-connection-patterns.drawio`, copy appropriate pattern:
 3. Change `source` to source component id
 4. Change `target` to target component id
 5. Adjust `exitX/exitY` and `entryX/entryY` based on relative positions
-6. Add waypoints if needed (see CONNECTION_PATTERNS.md)
+6. For monitoring/replication connections, add `dashed=1;dashPattern=8 8;` to the style
+7. Add waypoints if needed (see CONNECTION_PATTERNS.md)
 
 #### 3.4 Determine Exit/Entry Points
 
-Use patterns from `guides/CONNECTION_PATTERNS.md`:
+Use patterns from `guides/CONNECTION_PATTERNS.md` and `AWS_diagram_design_patterns.drawio`:
 
-- **Top to bottom**: `exitX=0.5;exitY=1;entryX=0.5;entryY=0`
-- **Left to right**: `exitX=1;exitY=0.5;entryX=0;entryY=0.5`
-- **Right to left**: `exitX=0;exitY=0.5;entryX=1;entryY=0.5`
+- **Left to right (horizontal)**: `exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0`
+- **Top to bottom (vertical)**: `exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0`
+- **Right to left (horizontal)**: `exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0`
 
 #### 3.5 Add Waypoints for Complex Routing
 
@@ -255,26 +252,26 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- User -->
-<mxCell id="user" value="Users" style="...;shape=mxgraph.aws4.user;" parent="1" vertex="1">
+<mxCell id="user" value="Users" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" parent="1" vertex="1">
     <mxGeometry x="100" y="100" width="60" height="60" as="geometry" />
 </mxCell>
 
 <!-- API Gateway -->
-<mxCell id="api-gateway" value="API Gateway" style="...;shape=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
+<mxCell id="api-gateway" value="API Gateway" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" parent="1" vertex="1">
     <mxGeometry x="250" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda" value="Lambda Function" style="...;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+<mxCell id="lambda" value="Lambda Function" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="450" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Connections -->
-<mxCell id="edge-user-api" value="HTTP Request" style="...;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="user" target="api-gateway" edge="1">
+<mxCell id="edge-user-api" value="HTTP Request" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="user" target="api-gateway" edge="1">
     <mxGeometry relative="1" as="geometry" />
 </mxCell>
 
-<mxCell id="edge-api-lambda" value="Invoke" style="...;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="api-gateway" target="lambda" edge="1">
+<mxCell id="edge-api-lambda" value="Invoke" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="api-gateway" target="lambda" edge="1">
     <mxGeometry relative="1" as="geometry" />
 </mxCell>
 ```
@@ -283,17 +280,17 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- S3 Bucket -->
-<mxCell id="s3" value="S3 Bucket" style="...;shape=mxgraph.aws4.s3;" parent="1" vertex="1">
+<mxCell id="s3" value="S3 Bucket" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#7AA116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
     <mxGeometry x="100" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Lambda -->
-<mxCell id="lambda-s3" value="S3 Handler" style="...;shape=mxgraph.aws4.lambda;" parent="1" vertex="1">
+<mxCell id="lambda-s3" value="S3 Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="1" vertex="1">
     <mxGeometry x="300" y="300" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Connection -->
-<mxCell id="edge-s3-lambda" value="S3 Event" style="...;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="s3" target="lambda-s3" edge="1">
+<mxCell id="edge-s3-lambda" value="S3 Event" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="s3" target="lambda-s3" edge="1">
     <mxGeometry relative="1" as="geometry" />
 </mxCell>
 ```
@@ -302,17 +299,17 @@ style="...;dashed=1;dashPattern=8 8;"
 
 ```xml
 <!-- Lambda -->
-<mxCell id="lambda-db" value="Query Handler" style="...;shape=mxgraph.aws4.lambda;" parent="private-subnet-1" vertex="1">
+<mxCell id="lambda-db" value="Query Handler" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="100" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- RDS -->
-<mxCell id="rds" value="RDS PostgreSQL" style="...;shape=mxgraph.aws4.rds;" parent="private-subnet-1" vertex="1">
+<mxCell id="rds" value="RDS PostgreSQL" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" parent="private-subnet-1" vertex="1">
     <mxGeometry x="50" y="328" width="78" height="78" as="geometry" />
 </mxCell>
 
 <!-- Connection -->
-<mxCell id="edge-lambda-rds" value="Query" style="...;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="lambda-db" target="rds" edge="1">
+<mxCell id="edge-lambda-rds" value="Query" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="lambda-db" target="rds" edge="1">
     <mxGeometry relative="1" as="geometry" />
 </mxCell>
 ```
@@ -323,15 +320,21 @@ Before finalizing diagram XML, verify:
 
 ### Icons
 - [ ] All icon shape names checked against ICON_REFERENCE.md
-- [ ] All icons use standard size (78x78)
+- [ ] All AWS service icons use `shape=mxgraph.aws4.resourceIcon` with `resIcon=mxgraph.aws4.[service]`
+- [ ] All icons use standard size (78x78 for services, 60x60 for User)
 - [ ] All icons have `aspect=fixed` in style
-- [ ] All icons have correct `fillColor` for service category
+- [ ] All AWS service icons have `strokeColor=#ffffff` (white stroke)
+- [ ] All icons have connection points defined: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]]`
+- [ ] All icons have correct `fillColor` for service (from ICON_REFERENCE.md)
 - [ ] All icons have correct `parent` (proper nesting)
 
 ### Connections
 - [ ] All connections use right-angle routing (no diagonals)
+- [ ] All connections use style: `endArrow=classic;html=1;rounded=0`
+- [ ] All connections include `exitDx=0;exitDy=0;entryDx=0;entryDy=0` in style
 - [ ] All connections are labeled with action verbs
 - [ ] Exit/entry points are correct (nearest to target)
+- [ ] Monitoring/replication connections use `dashed=1;dashPattern=8 8`
 - [ ] Waypoints added for complex routing
 - [ ] Connection styles appropriate (solid vs dashed)
 
@@ -350,21 +353,26 @@ Before finalizing diagram XML, verify:
 ## Common Mistakes to Avoid
 
 1. **Guessing Icon Names**: Always check ICON_REFERENCE.md
-2. **Wrong Icon Size**: Always use 78x78 for AWS icons
-3. **Missing aspect=fixed**: Required for icon display
-4. **Diagonal Connections**: Always use right-angle routing
-5. **Unlabeled Connections**: Always label connections
-6. **Inconsistent Spacing**: Use 150px standard spacing
-7. **Wrong Parent**: Components must be children of their container
-8. **Off-Grid Positions**: Align all positions to 10px grid
+2. **Wrong Icon Shape**: Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for AWS services (not `shape=mxgraph.aws4.[service]` directly)
+3. **Missing White Stroke**: AWS service icons must have `strokeColor=#ffffff`
+4. **Missing Connection Points**: Include the full `points=[[...]]` array for proper connection routing
+5. **Wrong Icon Size**: Always use 78x78 for AWS service icons, 60x60 for User icons
+6. **Missing aspect=fixed**: Required for icon display
+7. **Diagonal Connections**: Always use right-angle routing
+8. **Unlabeled Connections**: Always label connections
+9. **Missing exitDx/exitDy**: Include `exitDx=0;exitDy=0;entryDx=0;entryDy=0` in connection styles
+10. **Inconsistent Spacing**: Use 150px standard spacing
+11. **Wrong Parent**: Components must be children of their container
+12. **Off-Grid Positions**: Align all positions to 10px grid
 
 ## Template Inheritance
 
 ### Base Templates
 
 Start with base templates:
+- `templates/base/AWS_diagram_design_patterns.drawio` - **Icon styles and connection patterns** (use tab "AWS Icon Style" for icons, "AWS Connection Patterns" for connections)
 - `templates/base/aws-vpc-template.drawio` - Structure
-- `templates/base/aws-connection-patterns.drawio` - Connections
+- `templates/base/aws-connection-patterns.drawio` - Legacy connection examples
 
 ### Organization Templates
 
@@ -388,8 +396,8 @@ Always reference these files when generating diagrams:
 ### Task: Generate RAG Application Diagram
 
 1. **Read templates**:
+   - Read `AWS_diagram_design_patterns.drawio` for icon styles and connection patterns
    - Read `aws-vpc-template.drawio` for structure
-   - Read `aws-connection-patterns.drawio` for connections
 
 2. **List components**:
    - Users, API Gateway, Lambda (query handler)
@@ -398,9 +406,10 @@ Always reference these files when generating diagrams:
 
 3. **Look up icons**:
    - Check ICON_REFERENCE.md for each service
-   - Lambda: `mxgraph.aws4.lambda` (lowercase!)
-   - Bedrock: `mxgraph.aws4.bedrock` (lowercase!)
-   - S3: `mxgraph.aws4.s3` (lowercase!)
+   - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon=mxgraph.aws4.[service]` (lowercase!)
+   - Lambda: `resIcon=mxgraph.aws4.lambda` (lowercase!)
+   - Bedrock: `resIcon=mxgraph.aws4.bedrock` (lowercase!)
+   - S3: `resIcon=mxgraph.aws4.s3` (lowercase!)
    - etc.
    - **Important**: All icon names are lowercase per [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons)
 
@@ -410,12 +419,15 @@ Always reference these files when generating diagrams:
    - Modify as needed
 
 5. **Add services**:
-   - Copy icon examples from template
+   - Copy icon examples from `AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
+   - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for each service
+   - Include connection points and white stroke
    - Modify for each service
    - Calculate positions using spacing formulas
 
 6. **Add connections**:
-   - Copy connection patterns
+   - Copy connection patterns from `AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
+   - Use `endArrow=classic;html=1;rounded=0` with exit/entry points
    - Modify for each flow
    - Add waypoints for complex routing
 
@@ -427,19 +439,22 @@ Always reference these files when generating diagrams:
 ## Summary
 
 1. **Always reference templates and guides** - Don't guess
-2. **Check icon names** - Use ICON_REFERENCE.md
-3. **Use template structure** - Copy from base templates
-4. **Calculate positions** - Use spacing formulas
-5. **Right-angle routing** - Never use diagonal connections
-6. **Label connections** - Use action verbs
-7. **Verify everything** - Use checklist before finalizing
+2. **Use resourceIcon shape** - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for AWS services
+3. **Check icon names** - Use ICON_REFERENCE.md for `resIcon` values
+4. **Include white stroke** - All AWS service icons need `strokeColor=#ffffff`
+5. **Use template structure** - Copy from base templates
+6. **Calculate positions** - Use spacing formulas
+7. **Right-angle routing** - Never use diagonal connections
+8. **Label connections** - Use action verbs
+9. **Verify everything** - Use checklist before finalizing
 
 ## Questions?
 
 If unsure about:
 - Icon shape name → Check `guides/ICON_REFERENCE.md`
+- Icon style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
 - Connection routing → Check `guides/CONNECTION_PATTERNS.md`
+- Connection style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
 - Position calculation → Check `guides/SPACING_LAYOUT.md`
 - Structure examples → Check `templates/base/aws-vpc-template.drawio`
-- Connection examples → Check `templates/base/aws-connection-patterns.drawio`
 

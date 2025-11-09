@@ -4,12 +4,17 @@ This guide provides the correct AWS icon shape names for use in draw.io diagrams
 
 ## How AWS Icons Work in draw.io
 
-AWS icons in draw.io use the `mxgraph.aws4` shape library. The shape name format is:
+AWS icons in draw.io use the `mxgraph.aws4` shape library. The **correct** format for AWS service icons is:
 ```
-shape=mxgraph.aws4.[service_name]
+shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.[service_name]
 ```
 
-Where `[service_name]` uses **lowercase** letters and underscores instead of spaces. **Important**: All icon shape names are lowercase (e.g., `lambda`, not `Lambda`).
+Where `[service_name]` uses **lowercase** letters and underscores instead of spaces. **Important**: 
+- All icon shape names are lowercase (e.g., `lambda`, not `Lambda`)
+- Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` attribute for AWS services
+- Do NOT use `shape=mxgraph.aws4.[service_name]` directly (this is the old format)
+
+**Exception**: User icons use `shape=mxgraph.aws4.user` directly (not `resourceIcon`).
 
 ## Loading AWS Icons in draw.io
 
@@ -45,6 +50,11 @@ Open draw.io with: `https://app.diagrams.net/?splash=0&libs=aws4`
 This automatically loads the AWS icon library.
 
 ## Complete AWS Icon Shape Name Mapping
+
+**Important**: The shape names listed in the tables below should be used as `resIcon` values. For example, if the table shows `mxgraph.aws4.lambda`, use it as:
+```xml
+shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda
+```
 
 ### Compute Services
 
@@ -1169,33 +1179,41 @@ This automatically loads the AWS icon library.
 ## Icon Sizing Standards
 
 Standard AWS icon size in draw.io:
-- **Width**: 78 pixels
-- **Height**: 78 pixels
+- **Width**: 78 pixels (for AWS service icons)
+- **Height**: 78 pixels (for AWS service icons)
+- **Width**: 60 pixels (for User icons)
+- **Height**: 60 pixels (for User icons)
 - **Aspect**: `aspect=fixed` (maintains icon proportions)
 
-Example geometry:
+Example geometry for AWS service:
 ```xml
 <mxGeometry x="100" y="100" width="78" height="78" as="geometry"/>
 ```
 
+Example geometry for User icon:
+```xml
+<mxGeometry x="100" y="100" width="60" height="60" as="geometry"/>
+```
+
 ## Icon Color Codes
 
-AWS icons use standard color codes by service category:
+AWS icons use specific color codes per service. All AWS service icons must also include `strokeColor=#ffffff` (white stroke).
 
-| Category | Color Code | Example Services |
-|----------|-----------|------------------|
-| **Compute** | `#759C3E` (Green) | Lambda, ECS, EC2 |
-| **Storage** | `#759C3E` (Green) | S3, EBS, EFS |
-| **Database** | `#2E27AD` (Blue) | RDS, DynamoDB, Redshift |
-| **Networking** | `#8C4FFF` (Purple) | VPC, API Gateway, Load Balancer |
-| **Security** | `#8C4FFF` (Purple) | IAM, Secrets Manager, KMS |
-| **AI/ML** | `#4D27AA` (Dark Purple) | Bedrock, SageMaker |
-| **Management** | `#8C4FFF` (Purple) | CloudWatch, Systems Manager |
+| Service Category | Fill Color Code | Stroke Color | Example Services |
+|-----------------|----------------|--------------|------------------|
+| **Lambda/ECS** | `#ED7100` (Orange) | `#ffffff` | Lambda, ECS |
+| **Storage** | `#7AA116` (Green) | `#ffffff` | S3 |
+| **API Gateway/CloudWatch** | `#E7157B` (Pink/Magenta) | `#ffffff` | API Gateway, CloudWatch |
+| **Database** | `#C925D1` (Purple) | `#ffffff` | RDS |
+| **AI/ML** | `#01A88D` (Teal) | `#ffffff` | Bedrock |
+| **User** | `#232F3D` (Dark) | `none` | User icons |
 
 In the style attribute, use:
 ```xml
-fillColor=#759C3E
+fillColor=#ED7100;strokeColor=#ffffff
 ```
+
+**Note**: Check `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for the complete list of service-specific colors.
 
 ## Common Icon Loading Issues
 
@@ -1229,20 +1247,26 @@ fillColor=#759C3E
 When generating draw.io XML with AWS icons, verify:
 
 - [ ] AWS icon library is loaded in draw.io
-- [ ] Shape name uses correct format: `mxgraph.aws4.[SERVICE_NAME]`
+- [ ] AWS service icons use `shape=mxgraph.aws4.resourceIcon` with `resIcon=mxgraph.aws4.[SERVICE_NAME]`
+- [ ] User icons use `shape=mxgraph.aws4.user` directly
 - [ ] Shape name uses underscores, not spaces
-- [ ] Icon size is 78x78 pixels
+- [ ] Shape name is lowercase
+- [ ] Icon size is 78x78 pixels (for services) or 60x60 (for User)
 - [ ] Style includes `aspect=fixed`
-- [ ] Color code matches service category
+- [ ] AWS service icons include `strokeColor=#ffffff` (white stroke)
+- [ ] AWS service icons include connection points: `points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]]`
+- [ ] Color code matches service (check `AWS_diagram_design_patterns.drawio` tab "AWS Icon Style")
 - [ ] Container shapes use `shape=mxgraph.aws4.group` with appropriate `grIcon`
 
 ## Example: Correct Icon Usage
+
+### AWS Service Icon (Lambda)
 
 ```xml
 <!-- AWS Lambda Function -->
 <mxCell id="lambda-function" 
         value="My Lambda Function" 
-        style="sketch=0;points=[];outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#759C3E;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.lambda;" 
+        style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#ED7100;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" 
         parent="private-subnet-1" 
         vertex="1">
     <mxGeometry x="100" y="100" width="78" height="78" as="geometry"/>
@@ -1250,18 +1274,42 @@ When generating draw.io XML with AWS icons, verify:
 ```
 
 **Key elements**:
-- `shape=mxgraph.aws4.lambda` - Correct shape name (lowercase)
-- `fillColor=#759C3E` - Compute service color
+- `shape=mxgraph.aws4.resourceIcon` - Use resourceIcon shape
+- `resIcon=mxgraph.aws4.lambda` - Service name (lowercase)
+- `fillColor=#ED7100` - Service-specific color (orange for Lambda)
+- `strokeColor=#ffffff` - White stroke (required for AWS service icons)
+- `points=[[...]]` - Connection points array (required)
 - `aspect=fixed` - Maintains icon proportions
 - `width="78" height="78"` - Standard icon size
+
+### User Icon
+
+```xml
+<!-- User Icon -->
+<mxCell id="user" 
+        value="Users" 
+        style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.user;" 
+        parent="1" 
+        vertex="1">
+    <mxGeometry x="100" y="100" width="60" height="60" as="geometry"/>
+</mxCell>
+```
+
+**Key elements**:
+- `shape=mxgraph.aws4.user` - Direct shape (not resourceIcon)
+- `fillColor=#232F3D` - Dark color for user icon
+- `strokeColor=none` - No stroke for user icon
+- `width="60" height="60"` - Smaller size for user icon
 
 ## Template Usage
 
 When using templates from this repository:
-1. Reference this guide for correct icon shape names
-2. Copy icon examples from base templates
-3. Modify only the `value` (label) and `id` attributes
-4. Keep all style attributes identical to template
+1. Reference this guide for correct icon shape names (use as `resIcon` values)
+2. Copy icon examples from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style")
+3. Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for AWS services
+4. Include all required style attributes: connection points, white stroke, correct fill color
+5. Modify only the `value` (label), `id`, `resIcon`, and `fillColor` attributes
+6. Keep all other style attributes identical to template
 
 ## Additional Resources
 
@@ -1306,11 +1354,15 @@ All icons from this repository use **lowercase** names:
 ## Notes for AI Agents
 
 When generating draw.io XML:
-1. **Always** use shape names from this reference guide (all lowercase)
-2. **Never** guess shape names - if unsure, check this guide or the [m-radzikowski repository](https://github.com/m-radzikowski/diagrams-aws-icons)
-3. **Always** use lowercase for icon shape names (e.g., `lambda`, not `Lambda`)
-4. **Always** use standard icon size (78x78)
-5. **Always** include `aspect=fixed` in style
-6. **Always** verify AWS library is loaded (preferably from m-radzikowski repository)
-7. If a service isn't listed, check the latest icon library or use a generic container shape as fallback
+1. **Always** use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for AWS services (NOT `shape=mxgraph.aws4.[service]` directly)
+2. **Always** use shape names from this reference guide as `resIcon` values (all lowercase)
+3. **Never** guess shape names - if unsure, check this guide or the [m-radzikowski repository](https://github.com/m-radzikowski/diagrams-aws-icons)
+4. **Always** use lowercase for icon shape names (e.g., `lambda`, not `Lambda`)
+5. **Always** include `strokeColor=#ffffff` for AWS service icons
+6. **Always** include connection points array in style
+7. **Always** use standard icon size (78x78 for services, 60x60 for User)
+8. **Always** include `aspect=fixed` in style
+9. **Always** verify AWS library is loaded (preferably from m-radzikowski repository)
+10. **Always** check `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for correct colors and styles
+11. If a service isn't listed, check the latest icon library or use a generic container shape as fallback
 

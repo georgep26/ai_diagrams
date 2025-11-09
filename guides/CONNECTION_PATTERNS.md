@@ -15,7 +15,7 @@ A connection in draw.io XML is an `mxCell` with `edge="1"`:
 ```xml
 <mxCell id="edge-1" 
         value="Connection Label" 
-        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
         parent="1" 
         source="source-id" 
         target="target-id" 
@@ -47,33 +47,33 @@ Connections exit from the source component and enter the target component. The e
 
 ### Common Exit/Entry Patterns
 
-#### Top to Bottom (Vertical)
-```xml
-exitX=0.5;exitY=1;entryX=0.5;entryY=0
-```
-- Source: Exit from bottom center
-- Target: Enter at top center
-- Use case: User → API Gateway → Lambda
-
 #### Left to Right (Horizontal)
 ```xml
-exitX=1;exitY=0.5;entryX=0;entryY=0.5
+exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0
 ```
 - Source: Exit from right side center
 - Target: Enter at left side center
-- Use case: Lambda → RDS, Lambda → S3
+- Use case: Lambda → RDS, Lambda → S3, User → API Gateway → Lambda
+
+#### Top to Bottom (Vertical)
+```xml
+exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0
+```
+- Source: Exit from bottom center
+- Target: Enter at top center
+- Use case: Lambda → RDS (vertical layout)
 
 #### Right to Left (Horizontal)
 ```xml
-exitX=0;exitY=0.5;entryX=1;entryY=0.5
+exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0
 ```
 - Source: Exit from left side center
 - Target: Enter at right side center
-- Use case: S3 → Lambda (event-driven)
+- Use case: S3 → Lambda (event-driven, reverse flow)
 
 #### Bottom to Top (Vertical)
 ```xml
-exitX=0.5;exitY=0;entryX=0.5;entryY=1
+exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0
 ```
 - Source: Exit from top center
 - Target: Enter at bottom center
@@ -117,7 +117,7 @@ For components that are directly aligned:
 ```xml
 <mxCell id="edge-1" 
         value="Data Flow" 
-        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
         parent="1" 
         source="source-id" 
         target="target-id" 
@@ -258,7 +258,7 @@ When multiple connections share the same path, they can overlap and become hard 
 <!-- User to API Gateway -->
 <mxCell id="edge-user-api" 
         value="HTTP Request" 
-        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
         parent="1" 
         source="user" 
         target="api-gateway" 
@@ -269,7 +269,7 @@ When multiple connections share the same path, they can overlap and become hard 
 <!-- API Gateway to Lambda -->
 <mxCell id="edge-api-lambda" 
         value="Invoke" 
-        style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
         parent="1" 
         source="api-gateway" 
         target="lambda" 
@@ -293,16 +293,16 @@ When multiple connections share the same path, they can overlap and become hard 
 </mxCell>
 ```
 
-### Example 3: RDS Replication (Dashed)
+### Example 3: Monitoring Connection (Dashed)
 
 ```xml
-<!-- RDS Primary to Read Replica -->
-<mxCell id="edge-rds-replica" 
-        value="Replication" 
+<!-- Lambda to CloudWatch (Monitoring) -->
+<mxCell id="edge-lambda-cloudwatch" 
+        value="Logs" 
         style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" 
         parent="1" 
-        source="rds-primary" 
-        target="rds-replica" 
+        source="lambda-monitored" 
+        target="cloudwatch-1" 
         edge="1">
     <mxGeometry relative="1" as="geometry" />
 </mxCell>
@@ -352,5 +352,5 @@ When multiple connections share the same path, they can overlap and become hard 
 
 ## Reference Template
 
-See `templates/base/aws-connection-patterns.drawio` for complete examples of all connection patterns.
+See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns") for complete examples of all connection patterns. This is the authoritative source for connection styling.
 
