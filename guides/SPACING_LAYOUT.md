@@ -346,5 +346,5 @@ For a VPC with 2 subnets side-by-side:
 
 ## Reference Template
 
-See `templates/base/aws-vpc-template.drawio` for complete layout examples.
+See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete layout examples with proper spacing and nesting.
 

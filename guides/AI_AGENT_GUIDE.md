@@ -15,11 +15,13 @@ This repository contains templates and guides to help AI agents generate draw.io
 ### Step 1: Reference the Template System
 
 Before generating any diagram XML, always:
-1. Read `templates/base/aws-vpc-template.drawio` for structure
-2. Read `templates/base/aws-connection-patterns.drawio` for connections
-3. Reference `guides/ICON_REFERENCE.md` for icon shape names
-4. Reference `guides/CONNECTION_PATTERNS.md` for routing
-5. Reference `guides/SPACING_LAYOUT.md` for positioning
+1. Read `templates/base/AWS_diagram_design_patterns.drawio`:
+   - Tab "AWS Icon Style" for icon styles
+   - Tab "AWS Connection Patterns" for connection styles
+   - Tab "AWS Groups" for container/group styles and nesting examples
+2. Reference `guides/ICON_REFERENCE.md` for icon shape names
+3. Reference `guides/CONNECTION_PATTERNS.md` for routing
+4. Reference `guides/SPACING_LAYOUT.md` for positioning
 
 ### Step 2: Identify Required Components
 
@@ -37,10 +39,11 @@ List all AWS services and components needed:
 
 ### Step 4: Copy Template Structure
 
-Copy the base structure from `templates/base/aws-vpc-template.drawio`:
+Copy the base structure from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
 - Root mxGraphModel structure
-- Container hierarchy (Internet → VPC → Subnets)
-- Example component placements
+- Container hierarchy (AWS Cloud → Region → VPC → Subnets)
+- Group/container examples with proper nesting
+- See "AWS Services in Group Examples" section for complete structure examples
 
 ### Step 5: Calculate Positions
 
@@ -52,11 +55,12 @@ Use formulas from `guides/SPACING_LAYOUT.md`:
 
 ### Step 6: Add Connections
 
-Copy connection patterns from `templates/base/aws-connection-patterns.drawio`:
+Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"):
 - Use right-angle routing (never diagonal)
 - Label all connections
 - Use appropriate styles (solid vs dashed)
 - Add waypoints for complex routing
+- See "AWS Services in Group Examples" section for connections with nested services
 
 ### Step 7: Verify and Test
 
@@ -102,17 +106,74 @@ Check:
 
 #### 1.3 Add Container Hierarchy
 
-Copy container structure from `aws-vpc-template.drawio`:
-1. Internet/AWS Cloud container
-2. VPC container (inside Internet)
-3. Public subnets (inside VPC)
-4. Private subnets (inside VPC)
+**ALWAYS** use groups/containers to organize your diagram. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for group styles.
 
-**Important**: Maintain proper parent-child relationships.
+Copy container structure from `AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
+1. AWS Cloud container (outermost)
+2. Region container (optional, inside AWS Cloud)
+3. VPC container (inside Region or AWS Cloud)
+4. Availability Zone containers (optional, inside Region)
+5. Public subnets (inside VPC)
+6. Private subnets (inside VPC)
 
-### Phase 2: Add AWS Services
+See the "AWS Services in Group Examples" section for complete structure examples with nested services.
 
-#### 2.1 Look Up Icon Shape Name
+**Important**: 
+- Maintain proper parent-child relationships
+- All AWS services should be nested inside appropriate groups (VPC, subnet, etc.)
+- Use group styles from "AWS Groups" tab for consistency
+- See "AWS Services in Group Examples" section for nesting patterns
+
+### Phase 2: Add Groups and Containers
+
+#### 2.1 Choose Appropriate Groups
+
+Before adding services, determine which groups/containers you need. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for available group types:
+
+- **AWS Cloud**: Outermost container for all AWS resources
+- **Region**: Geographic region container
+- **VPC**: Virtual Private Cloud container
+- **Availability Zone**: AZ container (nested in Region)
+- **Public Subnet**: Public subnet container (nested in VPC)
+- **Private Subnet**: Private subnet container (nested in VPC)
+- **Security Group**: Security group container
+- **Auto Scaling Group**: ASG container
+- **Corporate Data Center**: On-premises container
+
+#### 2.2 Copy Group Template
+
+From `AWS_diagram_design_patterns.drawio` (tab "AWS Groups"), copy the appropriate group:
+
+```xml
+<!-- VPC Container Example -->
+<mxCell id="vpc-container" 
+        value="VPC" 
+        style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#AAB7B8;dashed=0;" 
+        vertex="1" 
+        parent="1">
+    <mxGeometry x="100" y="100" width="600" height="400" as="geometry" />
+</mxCell>
+```
+
+**Key elements**:
+- `container=1` - Makes this a container (children can be nested inside)
+- `shape=mxgraph.aws4.group` - Group shape type
+- `grIcon=mxgraph.aws4.group_vpc2` - Group icon (check "AWS Groups" tab for correct icon)
+- `parent` - Parent container (usually "1" for top-level, or another group's id)
+- Size the group to accommodate all nested services
+
+#### 2.3 Nest Groups Properly
+
+Groups can be nested. Example hierarchy:
+- AWS Cloud (parent="1")
+  - Region (parent="aws-cloud-id")
+    - VPC (parent="region-id")
+      - Private Subnet (parent="vpc-id")
+        - Lambda (parent="private-subnet-id")
+
+### Phase 3: Add AWS Services
+
+#### 3.1 Look Up Icon Shape Name
 
 **ALWAYS** check `guides/ICON_REFERENCE.md` first.
 
@@ -150,7 +211,38 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style"), copy an exampl
 
 **Note**: For User icons, use `shape=mxgraph.aws4.user` directly (not `resourceIcon`) with `fillColor=#232F3D` and `strokeColor=none`.
 
-#### 2.4 Calculate Positions
+#### 3.2 Nest Services in Groups
+
+**CRITICAL**: All AWS services must be nested inside appropriate groups. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for examples.
+
+**Rules for nesting**:
+- Services inside VPC should have `parent="vpc-container-id"`
+- Services inside subnets should have `parent="subnet-container-id"`
+- Services outside VPC (like S3, API Gateway) can have `parent="1"` or be in an AWS Cloud container
+- Connections between services in different groups still use `parent="1"` (top-level)
+
+**Example**: Lambda inside Private Subnet
+```xml
+<!-- Private Subnet Container -->
+<mxCell id="private-subnet-1" 
+        value="Private subnet" 
+        style="...;container=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;..." 
+        parent="vpc-container" 
+        vertex="1">
+    <mxGeometry x="50" y="50" width="500" height="300" as="geometry" />
+</mxCell>
+
+<!-- Lambda inside Private Subnet -->
+<mxCell id="lambda-1" 
+        value="Lambda Function" 
+        style="...;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;..." 
+        parent="private-subnet-1" 
+        vertex="1">
+    <mxGeometry x="50" y="50" width="78" height="78" as="geometry" />
+</mxCell>
+```
+
+#### 3.3 Calculate Positions
 
 Use formulas from `guides/SPACING_LAYOUT.md`:
 
@@ -169,16 +261,16 @@ next_y = current_y + 78 + 150 = current_y + 228
 grid_x = round(x / 10) * 10
 ```
 
-### Phase 3: Add Connections
+### Phase 4: Add Connections
 
-#### 3.1 Identify Connection Flow
+#### 4.1 Identify Connection Flow
 
 Map the data flow:
 - User → API Gateway → Lambda
 - S3 → Lambda (event trigger)
 - Lambda → RDS (database query)
 
-#### 3.2 Copy Connection Pattern
+#### 4.2 Copy Connection Pattern
 
 From `AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"), copy appropriate pattern:
 
@@ -194,7 +286,7 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"), copy 
 </mxCell>
 ```
 
-#### 3.3 Modify Connection
+#### 4.3 Modify Connection
 
 1. Change `id` to unique value
 2. Change `value` to descriptive label (action verb)
@@ -204,7 +296,7 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"), copy 
 6. For monitoring/replication connections, add `dashed=1;dashPattern=8 8;` to the style
 7. Add waypoints if needed (see CONNECTION_PATTERNS.md)
 
-#### 3.4 Determine Exit/Entry Points
+#### 4.4 Determine Exit/Entry Points
 
 Use patterns from `guides/CONNECTION_PATTERNS.md` and `AWS_diagram_design_patterns.drawio`:
 
@@ -212,7 +304,7 @@ Use patterns from `guides/CONNECTION_PATTERNS.md` and `AWS_diagram_design_patter
 - **Top to bottom (vertical)**: `exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0`
 - **Right to left (horizontal)**: `exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0`
 
-#### 3.5 Add Waypoints for Complex Routing
+#### 4.5 Add Waypoints for Complex Routing
 
 If components are far apart:
 
@@ -230,16 +322,16 @@ Calculate waypoints:
 2. Create waypoints at turn points
 3. Maintain right-angle routing
 
-### Phase 4: Apply Connection Styles
+### Phase 5: Apply Connection Styles
 
-#### 4.1 Solid Line (Default)
+#### 5.1 Solid Line (Default)
 
 For data flow, API calls:
 ```xml
 style="...;dashed=0;"
 ```
 
-#### 4.2 Dashed Line
+#### 5.2 Dashed Line
 
 For replication, monitoring:
 ```xml
@@ -345,9 +437,13 @@ Before finalizing diagram XML, verify:
 - [ ] Container sizes accommodate all components
 
 ### Structure
-- [ ] Proper container hierarchy (Internet → VPC → Subnets)
+- [ ] Proper container hierarchy (AWS Cloud → Region → VPC → Subnets)
+- [ ] All groups use styles from `AWS_diagram_design_patterns.drawio` (tab "AWS Groups")
+- [ ] All services are nested inside appropriate groups (not floating at top level)
+- [ ] Group containers have `container=1` attribute
+- [ ] Group containers use correct `grIcon` from "AWS Groups" tab
 - [ ] All components have unique IDs
-- [ ] All components have correct parent attribute
+- [ ] All components have correct parent attribute (services in groups, connections at top level)
 - [ ] Root elements present (mxfile, diagram, mxGraphModel)
 
 ## Common Mistakes to Avoid
@@ -363,16 +459,20 @@ Before finalizing diagram XML, verify:
 9. **Missing exitDx/exitDy**: Include `exitDx=0;exitDy=0;entryDx=0;entryDy=0` in connection styles
 10. **Inconsistent Spacing**: Use 150px standard spacing
 11. **Wrong Parent**: Components must be children of their container
-12. **Off-Grid Positions**: Align all positions to 10px grid
+12. **Services Not Nested**: All AWS services should be inside groups (VPC, subnet, etc.)
+13. **Missing container=1**: Group containers must have `container=1` attribute
+14. **Wrong Group Icon**: Use correct `grIcon` from "AWS Groups" tab
+15. **Off-Grid Positions**: Align all positions to 10px grid
 
 ## Template Inheritance
 
 ### Base Templates
 
 Start with base templates:
-- `templates/base/AWS_diagram_design_patterns.drawio` - **Icon styles and connection patterns** (use tab "AWS Icon Style" for icons, "AWS Connection Patterns" for connections)
-- `templates/base/aws-vpc-template.drawio` - Structure
-- `templates/base/aws-connection-patterns.drawio` - Legacy connection examples
+- `templates/base/AWS_diagram_design_patterns.drawio` - **Primary and only reference**:
+  - Tab "AWS Icon Style" - Icon styles
+  - Tab "AWS Connection Patterns" - Connection styles
+  - Tab "AWS Groups" - Group/container styles and nesting examples
 
 ### Organization Templates
 
@@ -385,19 +485,23 @@ If organization-specific templates exist:
 
 Always reference these files when generating diagrams:
 
-1. **ICON_REFERENCE.md** - Icon shape names (CRITICAL)
-2. **CONNECTION_PATTERNS.md** - Connection routing
-3. **SPACING_LAYOUT.md** - Position calculations
-4. **aws-vpc-template.drawio** - Structure examples
-5. **aws-connection-patterns.drawio** - Connection examples
+1. **AWS_diagram_design_patterns.drawio** - Primary template (all styles and examples)
+   - Tab "AWS Icon Style" - Icon styles
+   - Tab "AWS Connection Patterns" - Connection styles
+   - Tab "AWS Groups" - Group/container styles and nesting examples
+2. **ICON_REFERENCE.md** - Icon shape names (CRITICAL)
+3. **CONNECTION_PATTERNS.md** - Connection routing
+4. **SPACING_LAYOUT.md** - Position calculations
 
 ## Example: Complete Workflow
 
 ### Task: Generate RAG Application Diagram
 
 1. **Read templates**:
-   - Read `AWS_diagram_design_patterns.drawio` for icon styles and connection patterns
-   - Read `aws-vpc-template.drawio` for structure
+   - Read `AWS_diagram_design_patterns.drawio`:
+     - Tab "AWS Icon Style" for icon styles
+     - Tab "AWS Connection Patterns" for connection styles
+     - Tab "AWS Groups" for group styles, nesting examples, and complete structure examples
 
 2. **List components**:
    - Users, API Gateway, Lambda (query handler)
@@ -413,15 +517,18 @@ Always reference these files when generating diagrams:
    - etc.
    - **Important**: All icon names are lowercase per [m-radzikowski/diagrams-aws-icons](https://github.com/m-radzikowski/diagrams-aws-icons)
 
-4. **Copy structure**:
-   - Copy VPC container structure from template
-   - Copy subnet containers
-   - Modify as needed
+4. **Add groups/containers**:
+   - Copy group examples from `AWS_diagram_design_patterns.drawio` tab "AWS Groups"
+   - Create hierarchy: AWS Cloud → Region → VPC → Subnets
+   - Use correct `grIcon` for each group type
+   - Size groups to accommodate nested services
 
 5. **Add services**:
    - Copy icon examples from `AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
    - Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for each service
    - Include connection points and white stroke
+   - **Nest services inside appropriate groups** (see "AWS Services in Group Examples")
+   - Set `parent` to group container id (not "1")
    - Modify for each service
    - Calculate positions using spacing formulas
 
@@ -453,8 +560,10 @@ Always reference these files when generating diagrams:
 If unsure about:
 - Icon shape name → Check `guides/ICON_REFERENCE.md`
 - Icon style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
+- Group/container styles → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups"
+- Service nesting → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
 - Connection routing → Check `guides/CONNECTION_PATTERNS.md`
 - Connection style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
 - Position calculation → Check `guides/SPACING_LAYOUT.md`
-- Structure examples → Check `templates/base/aws-vpc-template.drawio`
+- Structure examples → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
 

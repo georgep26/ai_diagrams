@@ -12,6 +12,8 @@ Connections in draw.io represent data flow, API calls, triggers, and relationshi
 
 A connection in draw.io XML is an `mxCell` with `edge="1"`:
 
+**Important**: When connecting services that are nested inside groups (VPC, subnets, etc.), the connection itself should still have `parent="1"` (top-level), even though the source and target services have different parents. This allows connections to cross group boundaries properly.
+
 ```xml
 <mxCell id="edge-1" 
         value="Connection Label" 
@@ -350,7 +352,53 @@ When multiple connections share the same path, they can overlap and become hard 
 6. **Inconsistent styles** - Use same style for same connection types
 7. **Too many waypoints** - Keep routing simple (2-3 waypoints max)
 
+## Connections with Nested Services
+
+When services are nested inside groups (VPC, subnets, etc.), connections work the same way but must be placed at the top level:
+
+**Example**: Lambda (in Private Subnet) → RDS (in Private Subnet)
+```xml
+<!-- Lambda inside Private Subnet -->
+<mxCell id="lambda-1" 
+        value="Lambda Function" 
+        style="...;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;..." 
+        parent="private-subnet-1" 
+        vertex="1">
+    <mxGeometry x="50" y="50" width="78" height="78" as="geometry" />
+</mxCell>
+
+<!-- RDS inside Private Subnet -->
+<mxCell id="rds-1" 
+        value="RDS" 
+        style="...;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;..." 
+        parent="private-subnet-1" 
+        vertex="1">
+    <mxGeometry x="250" y="50" width="78" height="78" as="geometry" />
+</mxCell>
+
+<!-- Connection (parent="1" even though services are in groups) -->
+<mxCell id="edge-lambda-rds" 
+        value="Query" 
+        style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" 
+        parent="1" 
+        source="lambda-1" 
+        target="rds-1" 
+        edge="1">
+    <mxGeometry relative="1" as="geometry" />
+</mxCell>
+```
+
+**Key points**:
+- Services have `parent="group-id"` (nested in groups)
+- Connections have `parent="1"` (top-level, can cross group boundaries)
+- Connections automatically route through group boundaries
+- See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete examples
+
 ## Reference Template
 
-See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns") for complete examples of all connection patterns. This is the authoritative source for connection styling.
+See `templates/base/AWS_diagram_design_patterns.drawio`:
+- Tab "AWS Connection Patterns" - Connection styling examples
+- Tab "AWS Groups", section "AWS Services in Group Examples" - Connections with nested services
+
+This is the authoritative source for connection styling.
 
