@@ -422,7 +422,7 @@ shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda
 | **Amazon Managed Apache Cassandra Service** | `mxgraph.aws4.managed_apache_cassandra_service` | Cassandra-compatible service |
 | **Amazon Managed Streaming for Kafka** | `mxgraph.aws4.managed_streaming_for_kafka` | Apache Kafka service |
 | **MSK Amazon MSK Connect** | `mxgraph.aws4.msk_amazon_msk_connect` | Kafka Connect integration |
-| **Amazon OpenSearch Service** | `mxgraph.aws4.opensearch_service` | Search and analytics |
+| **Amazon OpenSearch Service** | `mxgraph.aws4.elasticsearch_service` | Search and analytics (Note: Use `elasticsearch_service` icon name as the icon library still uses the legacy Elasticsearch Service name) |
 | **OpenSearch Service Cluster Administrator Node** | `mxgraph.aws4.opensearch_service_cluster_administrator_node` | Master node |
 | **OpenSearch Service Data Node** | `mxgraph.aws4.opensearch_service_data_node` | Data node |
 | **OpenSearch Service Index** | `mxgraph.aws4.opensearch_service_index` | Search index |
