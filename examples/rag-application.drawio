@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
   <diagram id="rag-application" name="RAG Application Architecture">
-    <mxGraphModel dx="3784" dy="2716" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3000" pageHeight="1500" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1261" dy="905" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3000" pageHeight="1500" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -40,6 +40,9 @@
         <mxCell id="opensearch" value="OpenSearch Collection" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.elasticsearch_service;" vertex="1" parent="aws-account">
           <mxGeometry x="1631" y="286" width="78" height="78" as="geometry" />
         </mxCell>
+        <mxCell id="cloudwatch" value="CloudWatch" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0,1.256,0],[0.25,1.256,0],[0.5,1.256,0],[0.75,1.256,0],[1,1.256,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="aws-account">
+          <mxGeometry x="1396" y="542" width="78" height="78" as="geometry" />
+        </mxCell>
         <mxCell id="edge-retrieve-metadata-bedrock" value="Request Metadata" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="aws-account" source="retrieve-metadata-lambda" target="bedrock-kb">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
@@ -77,6 +80,21 @@
             <mxPoint x="560" y="1134" as="sourcePoint" />
             <mxPoint x="733" y="457" as="targetPoint" />
             <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-rag-lambda-cloudwatch" value="Logs" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="aws-account" source="rag-lambda" target="cloudwatch">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="892" y="562" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-retrieve-metadata-lambda-cloudwatch" value="Logs" style="endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1.256;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;exitPerimeter=0;" edge="1" parent="aws-account" source="retrieve-metadata-lambda" target="cloudwatch">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="850" y="581" />
+              <mxPoint x="1396" y="581" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="edge-bedrock-opensearch" value="References" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="bedrock-kb" target="opensearch">
