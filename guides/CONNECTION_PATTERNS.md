@@ -430,11 +430,11 @@ When services are nested inside groups (VPC, subnets, etc.), connections work th
 - Services have `parent="group-id"` (nested in groups)
 - Connections have `parent="1"` (top-level, can cross group boundaries)
 - Connections automatically route through group boundaries
-- See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete examples
+- See `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete examples
 
 ## Reference Template
 
-See `templates/base/AWS_diagram_design_patterns.drawio`:
+See `templates/AWS_diagram_design_patterns.drawio`:
 - Tab "AWS Connection Patterns" - Connection styling examples
 - Tab "AWS Groups", section "AWS Services in Group Examples" - Connections with nested services
 

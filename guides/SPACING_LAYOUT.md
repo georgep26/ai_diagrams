@@ -29,7 +29,7 @@ Consistent spacing and layout make diagrams readable and professional. This guid
 
 ## Spacing Standards
 
-**Reference**: All spacing values are based on `templates/base/AWS_diagram_design_patterns.drawio` tabs "AWS Connection Patterns" and "AWS Groups".
+**Reference**: All spacing values are based on `templates/AWS_diagram_design_patterns.drawio` tabs "AWS Connection Patterns" and "AWS Groups".
 
 ### Horizontal Spacing
 
@@ -149,7 +149,7 @@ Row 2: [Icon] --200px-- [Icon]
 
 ## Container Layout
 
-**Reference**: See `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups" for actual group layouts and spacing.
+**Reference**: See `templates/AWS_diagram_design_patterns.drawio` tab "AWS Groups" for actual group layouts and spacing.
 
 ### VPC Layout (Conceptual)
 
@@ -237,7 +237,7 @@ Row 2: [Icon] --200px-- [Icon]
 
 ## Spacing Calculations
 
-**Reference**: Based on `templates/base/AWS_diagram_design_patterns.drawio` tabs "AWS Connection Patterns" and "AWS Groups".
+**Reference**: Based on `templates/AWS_diagram_design_patterns.drawio` tabs "AWS Connection Patterns" and "AWS Groups".
 
 ### Formula: Next Icon Position
 
@@ -468,5 +468,5 @@ When positioning the logical paths textbox:
 
 ## Reference Template
 
-See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete layout examples with proper spacing and nesting.
+See `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete layout examples with proper spacing and nesting.
 

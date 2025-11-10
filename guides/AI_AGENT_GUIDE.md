@@ -17,7 +17,7 @@ This repository contains templates and guides to help AI agents generate draw.io
 ### Step 1: Reference the Template System
 
 Before generating any diagram XML, always:
-1. Read `templates/base/AWS_diagram_design_patterns.drawio`:
+1. Read `templates/AWS_diagram_design_patterns.drawio`:
    - Tab "AWS Icon Style" for icon styles
    - Tab "AWS Connection Patterns" for connection styles
    - Tab "AWS Groups" for container/group styles and nesting examples
@@ -68,7 +68,7 @@ This outline serves as a blueprint before generating XML and helps catch structu
 
 ### Step 5: Copy Template Structure
 
-Copy the base structure from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
+Copy the base structure from `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
 - Root mxGraphModel structure
 - Container hierarchy (AWS Cloud → Region → VPC → Subnets)
 - Group/container examples with proper nesting
@@ -84,7 +84,7 @@ Use formulas from `guides/SPACING_LAYOUT.md`:
 
 ### Step 7: Add Connections
 
-Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"):
+Copy connection patterns from `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Connection Patterns"):
 - Use right-angle routing (never diagonal)
 - Label all connections
 - Use appropriate styles (solid vs dashed)
@@ -112,7 +112,7 @@ Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio
 - Position badges at `x=icon_x-10, y=icon_y-10` (upper left corner)
 - If an icon appears in multiple paths, show multiple badges side-by-side
 
-**Reference**: See `templates/base/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation example.
+**Reference**: See `templates/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation example.
 
 ### Step 9: Verify and Test
 
@@ -161,7 +161,7 @@ Check:
 
 #### 1.3 Add Container Hierarchy
 
-**ALWAYS** use groups/containers to organize your diagram. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for group styles.
+**ALWAYS** use groups/containers to organize your diagram. Reference `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for group styles.
 
 Copy container structure from `AWS_diagram_design_patterns.drawio` (tab "AWS Groups"):
 1. AWS Cloud container (outermost)
@@ -183,7 +183,7 @@ See the "AWS Services in Group Examples" section for complete structure examples
 
 #### 2.1 Choose Appropriate Groups
 
-Before adding services, determine which groups/containers you need. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for available group types:
+Before adding services, determine which groups/containers you need. Reference `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups") for available group types:
 
 - **AWS Cloud**: Outermost container for all AWS resources
 - **Region**: Geographic region container
@@ -268,7 +268,7 @@ From `AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style"), copy an exampl
 
 #### 3.2 Nest Services in Groups
 
-**CRITICAL**: All AWS services must be nested inside appropriate groups. Reference `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for examples.
+**CRITICAL**: All AWS services must be nested inside appropriate groups. Reference `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for examples.
 
 **Rules for nesting**:
 - Services inside VPC should have `parent="vpc-container-id"`
@@ -493,7 +493,7 @@ If an icon appears in multiple paths, add multiple badges side-by-side:
 5. **Badge Alignment**: Position badges consistently at upper left of icons
 6. **Text Wrapping**: Use flexbox so text wraps below badges, not underneath
 
-**Reference**: See `templates/base/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation example.
+**Reference**: See `templates/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation example.
 
 ## Common Patterns
 
@@ -643,18 +643,17 @@ Before finalizing diagram XML, verify:
 ### Base Templates
 
 Start with base templates:
-- `templates/base/AWS_diagram_design_patterns.drawio` - **Primary and only reference**:
+- `templates/AWS_diagram_design_patterns.drawio` - **Primary and only reference**:
   - Tab "AWS Icon Style" - Icon styles
   - Tab "AWS Connection Patterns" - Connection styles
   - Tab "AWS Groups" - Group/container styles and nesting examples
   - Tab "Logical Paths" - Logical paths textbox and numbered badge examples
 
-### Organization Templates
+### Template Customization
 
-If organization-specific templates exist:
-- Check `templates/organizations/[org-name]/` directory
-- Inherit styles from base templates
-- Override only organization-specific elements
+The template file contains all necessary patterns and styles. For organization-specific customization:
+- Reference the template file for base patterns
+- Override only organization-specific elements as needed
 
 ## Reference Files
 
@@ -735,7 +734,7 @@ Always reference these files when generating diagrams:
    - Use circular badges (24x24px) matching diagram icon badges
    - Add numbered badges to diagram icons (upper left corner)
    - Use consistent colors for each path (e.g., #FF6B6B for path 1, #4A90E2 for path 2)
-   - See `templates/base/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example
+   - See `templates/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example
    - See `examples/rag-application.drawio` for complete implementation example
 
 9. **Verify**:
@@ -763,13 +762,13 @@ Always reference these files when generating diagrams:
 
 If unsure about:
 - Icon shape name → Check `guides/ICON_REFERENCE.md`
-- Icon style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
-- Group/container styles → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups"
-- Service nesting → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
+- Icon style → Check `templates/AWS_diagram_design_patterns.drawio` tab "AWS Icon Style"
+- Group/container styles → Check `templates/AWS_diagram_design_patterns.drawio` tab "AWS Groups"
+- Service nesting → Check `templates/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
 - Connection routing → Check `guides/CONNECTION_PATTERNS.md`
-- Connection style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
+- Connection style → Check `templates/AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
 - Position calculation → Check `guides/SPACING_LAYOUT.md`
-- Structure examples → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
-- Logical paths textbox → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation
-- Numbered badges → Check Phase 6 in this guide, `templates/base/AWS_diagram_design_patterns.drawio` tab "Logical Paths", or `examples/rag-application.drawio`
+- Structure examples → Check `templates/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
+- Logical paths textbox → Check `templates/AWS_diagram_design_patterns.drawio` tab "Logical Paths" for template example, or `examples/rag-application.drawio` for complete implementation
+- Numbered badges → Check Phase 6 in this guide, `templates/AWS_diagram_design_patterns.drawio` tab "Logical Paths", or `examples/rag-application.drawio`
 

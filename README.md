@@ -8,9 +8,9 @@ This repository provides a comprehensive template system to help AI coding agent
 ### Quick Start for AI Agents
 
 1. **Read the AI Agent Guide**: Start with [`guides/AI_AGENT_GUIDE.md`](guides/AI_AGENT_GUIDE.md) for the complete workflow
-2. **Reference Templates**: Use templates in [`templates/base/`](templates/base/) as starting points
+2. **Reference Templates**: Use the template file [`templates/AWS_diagram_design_patterns.drawio`](templates/AWS_diagram_design_patterns.drawio) as the primary reference
 3. **Check Icon Names**: Always verify icon shape names in [`guides/ICON_REFERENCE.md`](guides/ICON_REFERENCE.md)
-4. **Follow Patterns**: Use connection patterns from [`templates/base/aws-connection-patterns.drawio`](templates/base/aws-connection-patterns.drawio)
+4. **Follow Patterns**: Use connection patterns from the "AWS Connection Patterns" tab in the template file
 5. **Calculate Spacing**: Use formulas from [`guides/SPACING_LAYOUT.md`](guides/SPACING_LAYOUT.md)
 
 ### Repository Structure
@@ -18,18 +18,21 @@ This repository provides a comprehensive template system to help AI coding agent
 ```
 ai_diagrams/
 ├── templates/              # Draw.io template files
-│   ├── base/              # Base templates (start here)
-│   │   ├── aws-vpc-template.drawio          # VPC structure
-│   │   └── aws-connection-patterns.drawio   # Connection patterns
-│   └── organizations/     # Organization-specific templates
-│       └── example-org/   # Example organization template
+│   └── AWS_diagram_design_patterns.drawio  # Primary template with multiple tabs
 ├── guides/                # Reference guides
 │   ├── AI_AGENT_GUIDE.md        # Complete workflow for AI agents
 │   ├── ICON_REFERENCE.md        # AWS icon shape names
 │   ├── CONNECTION_PATTERNS.md    # Connection routing guide
 │   └── SPACING_LAYOUT.md        # Layout and spacing standards
 ├── examples/              # Example diagrams
-│   └── rag-aws-architecture.drawio  # RAG application example
+│   └── rag-application.drawio  # RAG application example
+├── .cursor/               # Cursor IDE custom commands
+│   └── commands/
+│       └── diagram.md     # Custom /diagram command for Cursor
+├── .github/               # GitHub Copilot custom prompts
+│   ├── copilot-instructions.md  # Repository-wide Copilot instructions
+│   └── prompts/
+│       └── diagram.prompt.md    # Custom /diagram prompt for Copilot
 └── README.md             # This file
 ```
 
@@ -55,9 +58,7 @@ ai_diagrams/
 
 | Template | Purpose |
 |----------|---------|
-| [VPC Template](templates/base/aws-vpc-template.drawio) | Base VPC structure with extensive comments |
-| [Connection Patterns](templates/base/aws-connection-patterns.drawio) | Connection routing examples |
-| [Organization Example](templates/organizations/example-org/custom-styles.drawio) | Custom styling example |
+| [AWS Diagram Design Patterns](templates/AWS_diagram_design_patterns.drawio) | Primary template with multiple tabs: AWS Icon Style, Connection Patterns, Groups, and Logical Paths |
 
 ### Priority Fixes
 
@@ -75,13 +76,47 @@ The template system addresses the most common issues:
    - Solution: Use spacing formulas from `SPACING_LAYOUT.md`
    - Align to 10px grid
 
+### Custom AI Agent Commands
+
+This repository includes custom commands for both **Cursor** and **GitHub Copilot** to streamline diagram generation.
+
+#### Setup
+
+The custom commands are already configured in this repository:
+- **Cursor**: `.cursor/commands/diagram.md`
+- **GitHub Copilot**: `.github/prompts/diagram.prompt.md` and `.github/copilot-instructions.md`
+
+No additional setup is required - the commands are ready to use!
+
+#### Using the `/diagram` Command
+
+**In Cursor:**
+1. Open Cursor's chat interface
+2. Type `/` to see available commands
+3. Select `/diagram` from the list
+4. The AI agent will automatically follow the workflow in `guides/AI_AGENT_GUIDE.md`
+
+**In GitHub Copilot:**
+1. Open Copilot Chat in your IDE
+2. Type `/diagram` in the chat
+3. Copilot will use the custom prompt that references `guides/AI_AGENT_GUIDE.md`
+4. The agent will follow all guidelines and standards automatically
+
+**What the Command Does:**
+- References the complete workflow in `guides/AI_AGENT_GUIDE.md`
+- Ensures proper icon names from `guides/ICON_REFERENCE.md`
+- Follows spacing and layout standards from `guides/SPACING_LAYOUT.md`
+- Uses connection patterns from the template file
+- Includes logical paths textbox and numbered badges
+- Verifies against all checklists in the guide
+
 ### For AI Agents
 
 **Workflow**:
 1. Read `guides/AI_AGENT_GUIDE.md` for complete instructions
-2. Copy structure from `templates/base/aws-vpc-template.drawio`
+2. Reference the template file `templates/AWS_diagram_design_patterns.drawio` (all tabs)
 3. Look up icon names in `guides/ICON_REFERENCE.md`
-4. Copy connection patterns from `templates/base/aws-connection-patterns.drawio`
+4. Copy connection patterns from the "AWS Connection Patterns" tab in the template
 5. Calculate positions using `guides/SPACING_LAYOUT.md` formulas
 6. Verify using checklist in AI Agent Guide
 
@@ -113,13 +148,8 @@ The template system addresses the most common issues:
 
 3. **Customize as needed**:
    - Modify components, labels, and positions
-   - Maintain structure and styling
+   - Maintain structure and styling from the template
    - Read XML comments for guidance
-
-4. **Create organization templates**:
-   - See `templates/organizations/README.md` for instructions
-   - Customize colors and branding
-   - Maintain compatibility with base structure
 
 ### Contributing
 
@@ -133,7 +163,7 @@ To contribute templates or guides:
 
 This repository contains a comprehensive architecture diagram for a Retrieval-Augmented Generation (RAG) application deployed on AWS.
 
-### File: `examples/rag-aws-architecture.drawio`
+### File: `examples/rag-application.drawio`
 
 A detailed draw.io architecture diagram showcasing a RAG application on AWS with the following components:
 
@@ -179,7 +209,7 @@ A detailed draw.io architecture diagram showcasing a RAG application on AWS with
 
 2. **Open the file:**
    - File → Open from → Device
-   - Select `examples/rag-aws-architecture.drawio`
+   - Select `examples/rag-application.drawio`
 
 3. **Edit and customize:**
    - All components are editable

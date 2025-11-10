@@ -1213,7 +1213,7 @@ In the style attribute, use:
 fillColor=#ED7100;strokeColor=#ffffff
 ```
 
-**Note**: Check `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for the complete list of service-specific colors.
+**Note**: Check `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for the complete list of service-specific colors.
 
 ## Common Icon Loading Issues
 
@@ -1305,7 +1305,7 @@ When generating draw.io XML with AWS icons, verify:
 
 When using templates from this repository:
 1. Reference this guide for correct icon shape names (use as `resIcon` values)
-2. Copy icon examples from `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style")
+2. Copy icon examples from `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style")
 3. Use `shape=mxgraph.aws4.resourceIcon` with `resIcon` for AWS services
 4. Include all required style attributes: connection points, white stroke, correct fill color
 5. Modify only the `value` (label), `id`, `resIcon`, and `fillColor` attributes
@@ -1363,6 +1363,6 @@ When generating draw.io XML:
 7. **Always** use standard icon size (78x78 for services, 60x60 for User)
 8. **Always** include `aspect=fixed` in style
 9. **Always** verify AWS library is loaded (preferably from m-radzikowski repository)
-10. **Always** check `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for correct colors and styles
+10. **Always** check `templates/AWS_diagram_design_patterns.drawio` (tab "AWS Icon Style") for correct colors and styles
 11. If a service isn't listed, check the latest icon library or use a generic container shape as fallback
 

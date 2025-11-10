@@ -1,73 +1,64 @@
 # Draw.io Templates for AWS Architecture Diagrams
 
-This directory contains template files for generating professional AWS architecture diagrams in draw.io format.
+This directory contains the primary template file for generating professional AWS architecture diagrams in draw.io format.
 
 ## Directory Structure
 
 ```
 templates/
-├── base/                          # Base templates (start here)
-│   ├── aws-vpc-template.drawio   # VPC structure and layout
-│   └── aws-connection-patterns.drawio  # Connection routing patterns
-├── organizations/                 # Organization-specific templates
-│   ├── README.md                  # Organization template guide
-│   └── example-org/               # Example organization
-│       └── custom-styles.drawio   # Custom styling example
-└── README.md                      # This file
+└── AWS_diagram_design_patterns.drawio  # Primary template with multiple tabs
 ```
 
-## Base Templates
+## Primary Template
 
-### aws-vpc-template.drawio
+### AWS_diagram_design_patterns.drawio
 
-**Purpose**: Foundational template for AWS VPC architecture diagrams.
+**Purpose**: Comprehensive template file containing all design patterns, styles, and examples for AWS architecture diagrams.
 
-**Contains**:
-- Complete VPC container structure
-- Public and private subnet examples
-- Internet Gateway and NAT Gateway placement
-- Example service placements (Lambda, RDS)
-- Extensive XML comments explaining each component
+**Contains Multiple Tabs**:
+
+1. **AWS Icon Style** - Icon styles and examples
+   - Standard AWS service icon styles
+   - Proper icon shape references
+   - Correct spacing calculations
+   - Standard AWS color codes
+   - Grid-based positioning
+
+2. **AWS Connection Patterns** - Connection routing patterns
+   - User → API Gateway → Lambda pattern
+   - S3 event trigger pattern
+   - Lambda → RDS database pattern
+   - Multi-point routing examples
+   - Dashed line patterns (replication, monitoring)
+   - Cross-container connections
+   - Right-angle routing (no diagonals)
+   - Proper exit/entry point calculations
+   - Labeled connections with action verbs
+
+3. **AWS Groups** - Group/container styles and nesting examples
+   - Complete VPC container structure
+   - Public and private subnet examples
+   - Internet Gateway and NAT Gateway placement
+   - Example service placements (Lambda, RDS)
+   - AWS Services in Group Examples section
+   - Proper parent-child relationships
+
+4. **Logical Paths** - Logical paths textbox and numbered badge examples
+   - Textbox positioning and formatting
+   - Numbered badge styles
+   - Color schemes for different paths
+   - Flexbox layout examples
 
 **Usage**:
-1. Copy the container hierarchy structure
-2. Modify subnet positions and sizes as needed
-3. Add your services using the example patterns
-4. Maintain the parent-child relationships
-
-**Key Features**:
-- Proper icon shape references
-- Correct spacing calculations
-- Standard AWS color codes
-- Grid-based positioning
-
-### aws-connection-patterns.drawio
-
-**Purpose**: Connection routing patterns for AWS services.
-
-**Contains**:
-- User → API Gateway → Lambda pattern
-- S3 event trigger pattern
-- Lambda → RDS database pattern
-- Multi-point routing examples
-- Dashed line patterns (replication, monitoring)
-- Cross-container connections
-
-**Usage**:
-1. Copy connection patterns that match your architecture
-2. Modify source and target component IDs
-3. Adjust exit/entry points for your layout
-4. Add waypoints for complex routing
-
-**Key Features**:
-- Right-angle routing (no diagonals)
-- Proper exit/entry point calculations
-- Labeled connections with action verbs
-- Appropriate line styles (solid vs dashed)
+1. Open the template file in draw.io
+2. Navigate to the relevant tab for the pattern you need
+3. Copy the structure, styles, or patterns you need
+4. Modify IDs, labels, and positions as needed
+5. Maintain the parent-child relationships and style attributes
 
 ## Template Commenting Standards
 
-All templates include extensive XML comments:
+The template includes extensive XML comments:
 
 1. **File-level comments**: Purpose and usage instructions
 2. **Section comments**: Major component groups
@@ -83,24 +74,30 @@ All templates include extensive XML comments:
 
 ### For AI Agents
 
-1. **Read first**: Always read the template file before generating diagrams
-2. **Copy structure**: Copy the container hierarchy
-3. **Copy patterns**: Copy icon and connection patterns
-4. **Modify carefully**: Change only IDs, labels, and positions
-5. **Maintain style**: Keep all style attributes identical
+1. **Read first**: Always read the template file (all tabs) before generating diagrams
+2. **Reference tabs**: Use the appropriate tab for the pattern you need:
+   - "AWS Icon Style" for icon styles
+   - "AWS Connection Patterns" for connection patterns
+   - "AWS Groups" for container/group styles and nesting
+   - "Logical Paths" for logical paths textbox and badges
+3. **Copy structure**: Copy the container hierarchy from "AWS Groups" tab
+4. **Copy patterns**: Copy icon and connection patterns from relevant tabs
+5. **Modify carefully**: Change only IDs, labels, and positions
+6. **Maintain style**: Keep all style attributes identical
 
 ### For Human Users
 
 1. **Open in draw.io**: Import the template file
-2. **Customize**: Modify components as needed
-3. **Maintain structure**: Keep container hierarchy intact
-4. **Follow comments**: Read XML comments for guidance
+2. **Navigate tabs**: Switch between tabs to see different patterns
+3. **Customize**: Modify components as needed
+4. **Maintain structure**: Keep container hierarchy intact
+5. **Follow comments**: Read XML comments for guidance
 
 ## Template Customization
 
-### Modifying Base Templates
+### Modifying the Template
 
-When customizing templates:
+When customizing based on the template:
 
 1. **Keep structure**: Maintain container hierarchy
 2. **Keep styles**: Don't change style attributes unnecessarily
@@ -108,15 +105,15 @@ When customizing templates:
 4. **Test icons**: Verify icons display correctly
 5. **Test connections**: Verify connections route correctly
 
-### Creating New Templates
+### Creating New Diagrams
 
-To create a new template:
+To create a new diagram:
 
-1. **Start with base**: Copy from `aws-vpc-template.drawio`
+1. **Start with template**: Reference `AWS_diagram_design_patterns.drawio` for all patterns
 2. **Add your components**: Add services specific to your architecture
 3. **Add comments**: Document every component extensively
 4. **Test thoroughly**: Verify icons and connections work
-5. **Share**: Add to appropriate directory
+5. **Follow guides**: Use the guides in `guides/` directory for reference
 
 ## Icon Reference
 
@@ -129,22 +126,12 @@ Never guess icon names. Always check the reference guide.
 
 For connection patterns, see:
 - `guides/CONNECTION_PATTERNS.md` - Connection routing guide
-- `templates/base/aws-connection-patterns.drawio` - Pattern examples
+- Template file "AWS Connection Patterns" tab - Pattern examples
 
 ## Spacing Reference
 
 For layout and spacing, see:
 - `guides/SPACING_LAYOUT.md` - Spacing standards and calculations
-
-## Organization Templates
-
-Organization-specific templates extend base templates with:
-- Custom color schemes
-- Organization branding
-- Specific service patterns
-- Custom styling
-
-See `organizations/README.md` for details.
 
 ## Best Practices
 
