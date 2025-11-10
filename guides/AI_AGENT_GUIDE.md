@@ -9,6 +9,8 @@ This repository contains templates and guides to help AI agents generate draw.io
 - ✅ Clean, readable connections
 - ✅ Consistent spacing and layout
 - ✅ Professional appearance
+- ✅ Logical paths textbox explaining application flows
+- ✅ Numbered step badges matching logical paths
 
 ## Quick Start Workflow
 
@@ -88,7 +90,30 @@ Copy connection patterns from `templates/base/AWS_diagram_design_patterns.drawio
 - Add waypoints for complex routing
 - See "AWS Services in Group Examples" section for connections with nested services
 
-### Step 8: Verify and Test
+### Step 8: Add Logical Paths Textbox
+
+**CRITICAL**: Add a "Logical Paths" textbox to explain typical application flows. This helps readers understand the architecture logic.
+
+**Positioning**: Place the textbox on the **left side** of the diagram (x=100-200px) so it's one of the first things viewers see.
+
+**Structure**:
+1. Create a title cell: "Logical Paths" (fontSize=16, fontStyle=1)
+2. Create a content cell with HTML formatting:
+   - Use flexbox layout (`display:flex;align-items:flex-start;`)
+   - Each path has a title (fontSize=15px, bold)
+   - Each step uses a circular badge (24x24px) matching the diagram icon badges
+   - Badge colors should match the numbered badges on diagram icons
+   - Text wraps below badges (not underneath) using flex layout
+
+**Numbered Badges on Icons**:
+- Add circular badges (24x24px) at the upper left of icons involved in logical paths
+- Use same colors as textbox badges (e.g., #FF6B6B for path 1, #4A90E2 for path 2)
+- Position badges at `x=icon_x-10, y=icon_y-10` (upper left corner)
+- If an icon appears in multiple paths, show multiple badges side-by-side
+
+**Reference**: See `examples/rag-application.drawio` for complete implementation example.
+
+### Step 9: Verify and Test
 
 Check:
 - [ ] All icon shape names match ICON_REFERENCE.md
@@ -96,6 +121,9 @@ Check:
 - [ ] Spacing follows SPACING_LAYOUT.md standards
 - [ ] All components are properly nested (parent-child)
 - [ ] Icon sizes are 78x78 (standard AWS icon size)
+- [ ] Logical paths textbox is positioned on the left side
+- [ ] Numbered badges on icons match logical paths textbox
+- [ ] Badge colors are consistent between textbox and diagram icons
 
 ## Detailed Workflow
 
@@ -367,6 +395,105 @@ style="...;dashed=1;dashPattern=8 8;"
 
 **Note**: ECR (Elastic Container Registry) connections should always use dashed lines to indicate container image retrieval/pull operations, not active data flow.
 
+### Phase 6: Add Logical Paths Textbox
+
+**CRITICAL**: The logical paths textbox explains typical application flows and helps readers understand the architecture logic. It should be positioned on the **left side** of the diagram (x=100-200px) so it's one of the first things viewers see.
+
+#### 6.1 Create Title Cell
+
+```xml
+<mxCell id="logical-paths-box" 
+        value="Logical Paths" 
+        style="text;html=1;strokeColor=#000000;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" 
+        vertex="1" 
+        parent="1">
+    <mxGeometry x="123" y="113" width="350" height="30" as="geometry" />
+</mxCell>
+```
+
+**Key elements**:
+- `fontSize=16;fontStyle=1` - Bold, larger title
+- Position on left: `x=100-200px` (adjust based on diagram layout)
+- `y` should align with diagram start (typically 100-150px)
+
+#### 6.2 Create Content Cell with HTML Formatting
+
+```xml
+<mxCell id="logical-paths-content" 
+        value="&lt;div style=&quot;padding:10px;&quot;&gt;&lt;b style=&quot;font-size:15px;&quot;&gt;Path Name:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;div style=&quot;margin-bottom:8px;display:flex;align-items:flex-start;&quot;&gt;&lt;span style=&quot;display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background-color:#FF6B6B;color:#FFFFFF;font-weight:bold;margin-right:8px;flex-shrink:0;&quot;&gt;1&lt;/span&gt;&lt;div style=&quot;flex:1;&quot;&gt;Step description text&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" 
+        style="text;html=1;strokeColor=#000000;fillColor=#F5F5F5;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=0" 
+        vertex="1" 
+        parent="1">
+    <mxGeometry x="123" y="143" width="350" height="389" as="geometry" />
+</mxCell>
+```
+
+**HTML Structure**:
+- Outer div with `padding:10px`
+- Path title: `<b style="font-size:15px;">Path Name:</b>`
+- Each step: `<div style="margin-bottom:8px;display:flex;align-items:flex-start;">`
+  - Badge: `<span>` with circular style (24x24px, border-radius:50%)
+  - Text: `<div style="flex:1;">` - allows text to wrap below badge
+
+**Badge Colors**:
+- Path 1: `#FF6B6B` (red)
+- Path 2: `#4A90E2` (blue)
+- Path 3: Use different color (e.g., `#4CAF50` green)
+- Each path should have a distinct color
+
+**Text Wrapping**:
+- Use flexbox: `display:flex;align-items:flex-start;`
+- Badge: `flex-shrink:0` (doesn't shrink)
+- Text: `flex:1` (takes remaining space, wraps below badge)
+
+#### 6.3 Add Numbered Badges to Diagram Icons
+
+For each icon involved in a logical path, add a circular badge at the upper left corner:
+
+```xml
+<mxCell id="step-1-badge-red" 
+        value="1" 
+        style="ellipse;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#FFFFFF;fontColor=#FFFFFF;fontSize=14;fontStyle=1" 
+        vertex="1" 
+        parent="1">
+    <mxGeometry x="icon_x-10" y="icon_y-10" width="24" height="24" as="geometry" />
+</mxCell>
+```
+
+**Positioning**:
+- Calculate badge position: `x = icon_x - 10`, `y = icon_y - 10` (upper left corner)
+- Badge size: 24x24px (matches textbox badges)
+- Color: Must match the path color in textbox
+
+**Multiple Paths on Same Icon**:
+If an icon appears in multiple paths, add multiple badges side-by-side:
+- First badge: `x = icon_x - 10`
+- Second badge: `x = icon_x + 20` (30px spacing between badges)
+
+**Example**: Icon at x=633, y=277 with badges for path 1 and path 2:
+```xml
+<!-- Path 1 badge (red) -->
+<mxCell id="step-1-badge-red" ...>
+    <mxGeometry x="623" y="267" width="24" height="24" as="geometry" />
+</mxCell>
+
+<!-- Path 2 badge (blue) -->
+<mxCell id="step-1-badge-blue" ...>
+    <mxGeometry x="653" y="267" width="24" height="24" as="geometry" />
+</mxCell>
+```
+
+#### 6.4 Best Practices
+
+1. **Position on Left**: Always place textbox on left side (x=100-200px) for visibility
+2. **Color Consistency**: Use same colors for textbox badges and diagram icon badges
+3. **Clear Descriptions**: Use concise, action-oriented step descriptions
+4. **Multiple Paths**: Support multiple logical paths with different colors
+5. **Badge Alignment**: Position badges consistently at upper left of icons
+6. **Text Wrapping**: Use flexbox so text wraps below badges, not underneath
+
+**Reference**: See `examples/rag-application.drawio` for complete implementation example.
+
 ## Common Patterns
 
 ### Pattern 1: User → API Gateway → Lambda
@@ -475,6 +602,18 @@ Before finalizing diagram XML, verify:
 - [ ] All components have correct parent attribute (services in groups, connections at top level)
 - [ ] Root elements present (mxfile, diagram, mxGraphModel)
 
+### Logical Paths
+- [ ] Logical paths textbox is positioned on left side (x=100-200px)
+- [ ] Textbox title uses fontSize=16, fontStyle=1
+- [ ] Textbox content uses flexbox layout for proper text wrapping
+- [ ] Each path has distinct color (e.g., #FF6B6B for path 1, #4A90E2 for path 2)
+- [ ] Circular badges in textbox are 24x24px matching diagram icon badges
+- [ ] Numbered badges on icons are positioned at upper left corner (icon_x-10, icon_y-10)
+- [ ] Badge colors match between textbox and diagram icons
+- [ ] Multiple badges on same icon are positioned side-by-side (30px spacing)
+- [ ] Text wraps below badges (not underneath) using flex layout
+- [ ] All steps in logical paths are clearly described
+
 ## Common Mistakes to Avoid
 
 1. **Guessing Icon Names**: Always check ICON_REFERENCE.md
@@ -492,6 +631,11 @@ Before finalizing diagram XML, verify:
 13. **Missing container=1**: Group containers must have `container=1` attribute
 14. **Wrong Group Icon**: Use correct `grIcon` from "AWS Groups" tab
 15. **Off-Grid Positions**: Align all positions to 10px grid
+16. **Logical Paths on Wrong Side**: Logical paths textbox must be on left side (x=100-200px), not right
+17. **Mismatched Badge Colors**: Badge colors in textbox must match badge colors on diagram icons
+18. **Text Under Badges**: Text should wrap below badges using flexbox, not underneath badges
+19. **Missing Numbered Badges**: All icons involved in logical paths must have numbered badges
+20. **Incorrect Badge Position**: Badges should be at upper left corner (icon_x-10, icon_y-10), not centered
 
 ## Template Inheritance
 
@@ -580,10 +724,21 @@ Always reference these files when generating diagrams:
    - Modify for each flow
    - Add waypoints for complex routing
 
-8. **Verify**:
+8. **Add logical paths textbox**:
+   - Position on left side (x=100-200px) so it's visible first
+   - Create title cell: "Logical Paths" (fontSize=16, fontStyle=1)
+   - Create content cell with HTML using flexbox layout
+   - Use circular badges (24x24px) matching diagram icon badges
+   - Add numbered badges to diagram icons (upper left corner)
+   - Use consistent colors for each path (e.g., #FF6B6B for path 1, #4A90E2 for path 2)
+   - See `examples/rag-application.drawio` for complete example
+
+9. **Verify**:
    - Check all icons against ICON_REFERENCE.md
    - Check all connections use right-angle routing
    - Check spacing follows standards
+   - Check logical paths textbox is on left side
+   - Check numbered badges match logical paths
 
 ## Summary
 
@@ -595,7 +750,9 @@ Always reference these files when generating diagrams:
 6. **Calculate positions** - Use spacing formulas
 7. **Right-angle routing** - Never use diagonal connections
 8. **Label connections** - Use action verbs
-9. **Verify everything** - Use checklist before finalizing
+9. **Add logical paths textbox** - Position on left side, explain application flows with numbered badges
+10. **Add numbered badges to icons** - Match textbox badges, position at upper left corner
+11. **Verify everything** - Use checklist before finalizing
 
 ## Questions?
 
@@ -608,4 +765,6 @@ If unsure about:
 - Connection style → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Connection Patterns"
 - Position calculation → Check `guides/SPACING_LAYOUT.md`
 - Structure examples → Check `templates/base/AWS_diagram_design_patterns.drawio` tab "AWS Groups", section "AWS Services in Group Examples"
+- Logical paths textbox → Check `examples/rag-application.drawio` for complete implementation
+- Numbered badges → Check Phase 6 in this guide and `examples/rag-application.drawio`
 

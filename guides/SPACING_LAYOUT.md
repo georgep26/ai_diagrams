@@ -413,6 +413,59 @@ For a VPC with nested subnets:
 - **Subnet Width**: `(icons_per_row * 200) + padding` (padding typically 160px+)
 - **Subnet Height**: `(num_rows * 200) + padding` (padding typically 160px+)
 
+## Logical Paths Textbox Positioning
+
+**Reference**: See `examples/rag-application.drawio` for complete implementation.
+
+### Textbox Position
+
+The logical paths textbox should be positioned on the **left side** of the diagram so it's one of the first things viewers see.
+
+**Standard Positioning**:
+- **X Position**: 100-200px from left edge (typically 123px)
+- **Y Position**: Align with diagram start (typically 100-150px, e.g., 113px)
+- **Width**: 350px (adjustable based on content)
+- **Height**: Variable (calculate based on number of paths and steps)
+
+**Example**:
+```xml
+<!-- Title -->
+<mxGeometry x="123" y="113" width="350" height="30" as="geometry" />
+
+<!-- Content -->
+<mxGeometry x="123" y="143" width="350" height="389" as="geometry" />
+```
+
+### Numbered Badge Positioning
+
+Numbered badges on diagram icons should be positioned at the **upper left corner** of each icon.
+
+**Badge Size**: 24x24px (circular)
+
+**Position Calculation**:
+- Badge X: `icon_x - 10` (10px to the left of icon)
+- Badge Y: `icon_y - 10` (10px above icon)
+
+**Example**: Icon at x=633, y=277
+- Badge position: x=623, y=267
+
+**Multiple Badges on Same Icon**:
+If an icon appears in multiple logical paths, position badges side-by-side:
+- First badge: `x = icon_x - 10`
+- Second badge: `x = icon_x + 20` (30px spacing between badges)
+
+**Example**: Icon at x=633, y=277 with two badges
+- Path 1 badge: x=623, y=267
+- Path 2 badge: x=653, y=267
+
+### Spacing Considerations
+
+When positioning the logical paths textbox:
+1. **Reserve Left Space**: Leave 100-200px on left side for textbox
+2. **Main Diagram Start**: Main diagram components should start at x=600-800px (after textbox)
+3. **Vertical Alignment**: Textbox y-position should align with diagram start
+4. **Badge Spacing**: Badges should not overlap icons or other badges
+
 ## Reference Template
 
 See `templates/base/AWS_diagram_design_patterns.drawio` (tab "AWS Groups", section "AWS Services in Group Examples") for complete layout examples with proper spacing and nesting.
